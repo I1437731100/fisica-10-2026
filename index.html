@@ -30,6 +30,7 @@
     .stat-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(79,195,247,.2)}
     .stat-value{font-size:1.7rem;font-weight:700;color:#4fc3f7;text-shadow:0 0 12px rgba(79,195,247,.5);line-height:1.1}
     .stat-label{font-size:.75rem;color:#a0b8d0;text-transform:uppercase;letter-spacing:.5px;margin-top:.25rem}
+    .stat-hint{font-size:.65rem;color:#7a9bb5;margin-top:.15rem;font-style:italic;text-transform:none;letter-spacing:0}
 
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.2rem}
@@ -37,7 +38,9 @@
     .card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(79,195,247,.2)}
     .card h3{color:#4fc3f7;font-size:1.1rem;margin-bottom:.3rem;border-bottom:2px solid rgba(79,195,247,.3);padding-bottom:.5rem;text-shadow:0 0 10px rgba(79,195,247,.5)}
     .card .subtitle{font-size:.82rem;color:#a0b8d0;margin-bottom:.9rem}
-    .pregunta{margin-bottom:1rem}
+    .pregunta{margin-bottom:1rem;padding:.3rem .4rem;border-radius:8px;transition:background .3s}
+    .pregunta.unanswered{background:rgba(231,76,60,.08);outline:1px dashed rgba(231,76,60,.5)}
+    .pregunta.unanswered > p{color:#ff8f85}
     .pregunta p{font-weight:600;font-size:.88rem;margin-bottom:.4rem;color:#e8eef5}
     .opciones{display:flex;flex-direction:column;gap:.35rem}
     .opcion{display:flex;align-items:center;background:rgba(255,255,255,.05);padding:.45rem .7rem;border-radius:8px;border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
@@ -45,7 +48,8 @@
     .opcion input[type=radio]{margin-right:.55rem;accent-color:#4fc3f7;width:15px;height:15px;cursor:pointer}
     .opcion label{cursor:pointer;font-size:.83rem;flex:1;color:#d0e2f2}
     .progress-line{height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;margin-bottom:.8rem}
-    .progress-line > div{height:100%;width:0;background:linear-gradient(90deg,#4fc3f7,#2d7ab8);border-radius:3px;transition:width .3s ease;box-shadow:0 0 10px rgba(79,195,247,.5)}
+    .progress-line > div{height:100%;width:0;background:linear-gradient(90deg,#4fc3f7,#2d7ab8);border-radius:3px;transition:width .3s ease,background .3s;box-shadow:0 0 10px rgba(79,195,247,.5)}
+    .progress-line.complete > div{background:linear-gradient(90deg,#2ecc71,#27ae60);box-shadow:0 0 10px rgba(46,204,113,.6)}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:linear-gradient(135deg,#1a5a8a,#2d7ab8);color:#fff;border:none;padding:.65rem 1.5rem;border-radius:8px;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .2s;margin-top:.4rem;box-shadow:0 4px 15px rgba(26,90,138,.4)}
     .btn:hover:not(:disabled){background:linear-gradient(135deg,#2d7ab8,#4fc3f7);box-shadow:0 6px 20px rgba(79,195,247,.5)}
     .btn:disabled{opacity:.6;cursor:not-allowed}
@@ -61,20 +65,23 @@
     .opiniones-list{margin-top:.9rem;max-height:230px;overflow-y:auto;padding-right:.3rem}
     .opiniones-list::-webkit-scrollbar{width:6px}
     .opiniones-list::-webkit-scrollbar-thumb{background:rgba(79,195,247,.4);border-radius:3px}
-    .opinion-item{background:rgba(255,255,255,.05);border-left:3px solid #f0b429;padding:.55rem .75rem;border-radius:0 8px 8px 0;margin-bottom:.55rem;font-size:.83rem;color:#d0e2f2}
+    .opinion-item{background:rgba(255,255,255,.05);border-left:3px solid #f0b429;padding:.55rem .75rem;border-radius:0 8px 8px 0;margin-bottom:.55rem;font-size:.83rem;color:#d0e2f2;word-break:break-word}
     .opinion-item .fecha{display:block;font-size:.7rem;color:#7a9bb5;margin-top:.2rem}
     textarea{width:100%;padding:.7rem;border:1px solid rgba(255,255,255,.2);border-radius:8px;font-size:.85rem;resize:vertical;min-height:70px;font-family:inherit;background:rgba(0,0,0,.2);color:#e8eef5}
     textarea:focus{outline:none;border-color:#4fc3f7;box-shadow:0 0 0 3px rgba(79,195,247,.2)}
     .char-count{font-size:.7rem;color:#7a9bb5;text-align:right;margin-top:.2rem}
+    .char-count.warn{color:#f0b429}
+    .char-count.danger{color:#e74c3c}
     .nota{font-size:.73rem;color:#7a9bb5;margin-top:.5rem;font-style:italic}
     .habilidades-tag{display:inline-block;background:rgba(79,195,247,.15);color:#8fd4ff;padding:.22rem .65rem;border-radius:20px;font-size:.73rem;margin:.15rem;border:1px solid rgba(79,195,247,.3)}
 
     table{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.83rem}
     th,td{padding:.55rem;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
-    th{background:rgba(79,195,247,.1);color:#4fc3f7;font-weight:600;position:sticky;top:0}
+    th{background:rgba(79,195,247,.1);color:#4fc3f7;font-weight:600;position:sticky;top:0;z-index:1}
     td{color:#c0d8ec}
     tr:hover{background:rgba(255,255,255,.03)}
     .table-wrap{overflow-x:auto;max-height:400px}
+    .top-option{color:#f0b429;font-weight:700}
 
     .chart-container{position:relative;height:210px;width:100%}
     .config-input{width:100%;padding:.55rem .7rem;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.2);color:#e8eef5;font-size:.85rem;margin-bottom:.5rem;font-family:inherit}
@@ -118,24 +125,24 @@
 <div class="container">
 
   <div class="intro-box">
-    <p><strong>Objetivo del curso <strong class="curso">2026 – 2027</strong>:</strong> Medir de forma anónima la comprensión de la explicación del profesor, la resolución de ejercicios, el dominio de habilidades previas y otros indicadores de actualidad (motivación, contextualización, materiales, retroalimentación y uso de tecnología).</p>
+    <p><strong>Objetivo del curso <span class="curso">2026 – 2027</span>:</strong> Medir de forma anónima la comprensión de la explicación del profesor, la resolución de ejercicios, el dominio de habilidades previas y otros indicadores de actualidad (motivación, contextualización, materiales, retroalimentación y uso de tecnología).</p>
     <p><strong>Privacidad:</strong> Sin datos personales. Los votos y opiniones se almacenan localmente en este dispositivo y se visualizan en gráficas dinámicas y tablas de seguimiento. Esta edición inicia un ciclo nuevo de datos para el año escolar <strong>2026 – 2027</strong>.</p>
   </div>
 
   <div class="grid-stats" id="statsCards">
-    <div class="stat-card"><div class="stat-value" id="statVotos">0</div><div class="stat-label">Total de votos</div></div>
-    <div class="stat-card"><div class="stat-value" id="statOpiniones">0</div><div class="stat-label">Opiniones</div></div>
-    <div class="stat-card"><div class="stat-value" id="statSatisfaccion">—</div><div class="stat-label">Satisfacción con explicación</div></div>
-    <div class="stat-card"><div class="stat-value" id="statHabilidades">—</div><div class="stat-label">Dominio de habilidades</div></div>
+    <div class="stat-card"><div class="stat-value" id="statVotos">0</div><div class="stat-label">Total de votos</div><div class="stat-hint" id="statVotosHint">Sin registros aún</div></div>
+    <div class="stat-card"><div class="stat-value" id="statOpiniones">0</div><div class="stat-label">Opiniones</div><div class="stat-hint" id="statOpinionesHint">Sin registros aún</div></div>
+    <div class="stat-card"><div class="stat-value" id="statSatisfaccion">—</div><div class="stat-label">Comprensión de explicación</div><div class="stat-hint">Basado en P1</div></div>
+    <div class="stat-card"><div class="stat-value" id="statHabilidades">—</div><div class="stat-label">Dominio de habilidades</div><div class="stat-hint">Basado en P3</div></div>
   </div>
 
   <div class="grid-2">
     <div class="card">
       <h3>📋 Medidores de Opinión</h3>
-      <p class="subtitle" id="progressText">Progreso: 0 / 10 preguntas respondidas</p>
-      <div class="progress-line"><div id="progressBar" style="width: 0%;"></div></div>
-      <form id="formVotacion" novalidate="">
-        <div id="preguntasContainer"><div class="pregunta"><p>¿Entiendes la explicación del profesor durante las clases de Física?</p><div class="opciones"><label class="opcion"><input type="radio" name="p1" value="Siempre" required=""> Siempre</label><label class="opcion"><input type="radio" name="p1" value="Casi siempre" required=""> Casi siempre</label><label class="opcion"><input type="radio" name="p1" value="A veces" required=""> A veces</label><label class="opcion"><input type="radio" name="p1" value="Casi nunca" required=""> Casi nunca</label><label class="opcion"><input type="radio" name="p1" value="Nunca" required=""> Nunca</label></div></div><div class="pregunta"><p>¿Puedes resolver los ejercicios de Física de forma independiente?</p><div class="opciones"><label class="opcion"><input type="radio" name="p2" value="Sin dificultad" required=""> Sin dificultad</label><label class="opcion"><input type="radio" name="p2" value="Con poca ayuda" required=""> Con poca ayuda</label><label class="opcion"><input type="radio" name="p2" value="Con mucha ayuda" required=""> Con mucha ayuda</label><label class="opcion"><input type="radio" name="p2" value="No puedo" required=""> No puedo</label></div></div><div class="pregunta"><p>¿Dominas las habilidades básicas de grados anteriores (conversión, despeje, gráficas)?</p><div class="opciones"><label class="opcion"><input type="radio" name="p3" value="Totalmente" required=""> Totalmente</label><label class="opcion"><input type="radio" name="p3" value="Parcialmente" required=""> Parcialmente</label><label class="opcion"><input type="radio" name="p3" value="No" required=""> No</label><label class="opcion"><input type="radio" name="p3" value="No sé" required=""> No sé</label></div></div><div class="pregunta"><p>¿Cuál es la principal causa de tus dificultades en Física?</p><div class="opciones"><label class="opcion"><input type="radio" name="p4" value="Explicación del profesor" required=""> Explicación del profesor</label><label class="opcion"><input type="radio" name="p4" value="Falta de base previa" required=""> Falta de base previa</label><label class="opcion"><input type="radio" name="p4" value="Pocos ejercicios" required=""> Pocos ejercicios</label><label class="opcion"><input type="radio" name="p4" value="Falta de estudio" required=""> Falta de estudio</label><label class="opcion"><input type="radio" name="p4" value="Otra" required=""> Otra</label></div></div><div class="pregunta"><p>¿Con qué frecuencia el profesor utiliza ejemplos prácticos o contextualizados?</p><div class="opciones"><label class="opcion"><input type="radio" name="p5" value="Siempre" required=""> Siempre</label><label class="opcion"><input type="radio" name="p5" value="Casi siempre" required=""> Casi siempre</label><label class="opcion"><input type="radio" name="p5" value="A veces" required=""> A veces</label><label class="opcion"><input type="radio" name="p5" value="Casi nunca" required=""> Casi nunca</label><label class="opcion"><input type="radio" name="p5" value="Nunca" required=""> Nunca</label></div></div><div class="pregunta"><p>¿Los objetivos de la clase son claros desde el inicio?</p><div class="opciones"><label class="opcion"><input type="radio" name="p6" value="Siempre" required=""> Siempre</label><label class="opcion"><input type="radio" name="p6" value="Casi siempre" required=""> Casi siempre</label><label class="opcion"><input type="radio" name="p6" value="A veces" required=""> A veces</label><label class="opcion"><input type="radio" name="p6" value="Casi nunca" required=""> Casi nunca</label><label class="opcion"><input type="radio" name="p6" value="Nunca" required=""> Nunca</label></div></div><div class="pregunta"><p>¿Dispones de materiales de apoyo suficientes (libro, guías, ejercicios)?</p><div class="opciones"><label class="opcion"><input type="radio" name="p7" value="Sí, abundantes" required=""> Sí, abundantes</label><label class="opcion"><input type="radio" name="p7" value="Suficientes" required=""> Suficientes</label><label class="opcion"><input type="radio" name="p7" value="Escasos" required=""> Escasos</label><label class="opcion"><input type="radio" name="p7" value="No tengo" required=""> No tengo</label></div></div><div class="pregunta"><p>¿Recibes retroalimentación oportuna sobre tus errores?</p><div class="opciones"><label class="opcion"><input type="radio" name="p8" value="Siempre" required=""> Siempre</label><label class="opcion"><input type="radio" name="p8" value="Casi siempre" required=""> Casi siempre</label><label class="opcion"><input type="radio" name="p8" value="A veces" required=""> A veces</label><label class="opcion"><input type="radio" name="p8" value="Casi nunca" required=""> Casi nunca</label><label class="opcion"><input type="radio" name="p8" value="Nunca" required=""> Nunca</label></div></div><div class="pregunta"><p>¿Qué tan motivado/a te sientes hacia el aprendizaje de la Física?</p><div class="opciones"><label class="opcion"><input type="radio" name="p9" value="Muy motivado/a" required=""> Muy motivado/a</label><label class="opcion"><input type="radio" name="p9" value="Algo motivado/a" required=""> Algo motivado/a</label><label class="opcion"><input type="radio" name="p9" value="Poco motivado/a" required=""> Poco motivado/a</label><label class="opcion"><input type="radio" name="p9" value="Nada motivado/a" required=""> Nada motivado/a</label></div></div><div class="pregunta"><p>¿Utilizas dispositivos tecnológicos (móvil, PC) para estudiar o practicar Física?</p><div class="opciones"><label class="opcion"><input type="radio" name="p10" value="Frecuentemente" required=""> Frecuentemente</label><label class="opcion"><input type="radio" name="p10" value="Ocasionalmente" required=""> Ocasionalmente</label><label class="opcion"><input type="radio" name="p10" value="Rara vez" required=""> Rara vez</label><label class="opcion"><input type="radio" name="p10" value="Nunca" required=""> Nunca</label></div></div></div>
+      <p class="subtitle" id="progressText" aria-live="polite">Progreso: 0 / 10 preguntas respondidas</p>
+      <div class="progress-line" id="progressLine"><div id="progressBar" style="width: 0%;"></div></div>
+      <form id="formVotacion" novalidate="" autocomplete="off">
+        <div id="preguntasContainer"></div>
         <button type="submit" class="btn" id="btnEnviarVotos">Enviar mis respuestas</button>
       </form>
     </div>
@@ -143,12 +150,12 @@
     <div class="card">
       <h3>💬 Opiniones Abiertas</h3>
       <p class="subtitle">Comparte sugerencias o dificultades específicas (sin datos personales).</p>
-      <form id="formOpinion" novalidate="">
+      <form id="formOpinion" novalidate="" autocomplete="off">
         <textarea id="textoOpinion" placeholder="Ejemplo: Me gustaría más tiempo para practicar ejercicios de cinemática..." maxlength="300" required=""></textarea>
         <div class="char-count"><span id="charCount">0</span> / 300</div>
         <button type="submit" class="btn btn-secondary" id="btnEnviarOpinion">Publicar opinión</button>
       </form>
-      <div class="opiniones-list" id="listaOpiniones" aria-live="polite"><p style="color:#7a9bb5;font-style:italic;font-size:.83rem;">Aún no hay opiniones en el curso 2026–2027. ¡Comparte la tuya!</p></div>
+      <div class="opiniones-list" id="listaOpiniones" aria-live="polite"></div>
       <hr style="margin:1.1rem 0;border:0;border-top:1px solid rgba(255,255,255,.1);">
       <h3>🧠 Habilidades Previas</h3>
       <p class="subtitle">Base necesaria de grados anteriores.</p>
@@ -163,7 +170,7 @@
     </div>
   </div>
 
-  <div class="grid-3">
+  <div class="grid-3" id="chartsSection">
     <div class="card"><h3>📊 Comprensión y Ejercicios</h3><div class="chart-container"><canvas id="chartComprension" width="579" height="393" style="display: block; box-sizing: border-box; height: 210px; width: 309px;"></canvas></div></div>
     <div class="card"><h3>🧩 Habilidades Previas</h3><div class="chart-container"><canvas id="chartHabilidades" width="579" height="393" style="display: block; box-sizing: border-box; height: 210px; width: 309px;"></canvas></div></div>
     <div class="card"><h3>⚡ Causa Principal</h3><div class="chart-container"><canvas id="chartCausa" width="579" height="393" style="display: block; box-sizing: border-box; height: 210px; width: 309px;"></canvas></div></div>
@@ -171,11 +178,11 @@
 
   <div class="card" style="margin-top:1.2rem">
     <h3>📑 Tabla de Seguimiento</h3>
-    <p class="subtitle">Desglose detallado por pregunta, opción, conteo y porcentaje — Curso 2026–2027.</p>
+    <p class="subtitle">Desglose detallado por pregunta, opción, conteo y porcentaje — Curso 2026–2027. La opción más votada aparece resaltada.</p>
     <div class="table-wrap">
       <table id="tablaResultados">
         <thead><tr><th>Pregunta</th><th>Opción</th><th>Votos</th><th>%</th></tr></thead>
-        <tbody id="tablaBody"><tr><td colspan="4" style="text-align:center;color:#7a9bb5;font-style:italic;padding:1.5rem">Aún no hay votos registrados en el curso 2026–2027.</td></tr></tbody>
+        <tbody id="tablaBody"></tbody>
       </table>
     </div>
     <p class="nota" id="totalVotosNota">Total de votos registrados (2026–2027): 0</p>
@@ -185,14 +192,13 @@
     <h3>💾 Gestión de Datos</h3>
     <p class="subtitle">Exporta, importa o reinicia los datos almacenados en este dispositivo.</p>
     <div class="btn-group">
-      <button class="btn btn-sm" id="btnExportar">⬇ Exportar JSON</button>
-      <button class="btn btn-sm" id="btnImportar">⬆ Importar JSON</button>
-      <button class="btn btn-danger btn-sm" id="btnReset">🗑 Borrar todos los datos</button>
+      <button class="btn btn-sm" id="btnExportar" type="button">⬇ Exportar JSON</button>
+      <button class="btn btn-sm" id="btnImportar" type="button">⬆ Importar JSON</button>
+      <button class="btn btn-danger btn-sm" id="btnReset" type="button">🗑 Borrar todos los datos</button>
     </div>
     <input type="file" id="inputImportar" accept="application/json" hidden="">
   </div>
 
-  <!-- Se elimina automáticamente en la versión publicada -->
   
 
 </div>
@@ -215,6 +221,7 @@
 const UI = {
   toast(msg, type = 'info', ms = 3500) {
     const c = document.getElementById('toastContainer');
+    if (!c) return;
     const el = document.createElement('div');
     el.className = `toast toast-${type}`;
     el.textContent = msg;
@@ -232,14 +239,21 @@ const UI = {
       return new Date(iso).toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
     } catch { return iso; }
   },
-  formatNumber(n) { return new Intl.NumberFormat('es-ES').format(n); }
+  formatNumber(n) { return new Intl.NumberFormat('es-ES').format(n); },
+  formatPercent(ratio) {
+    try {
+      return new Intl.NumberFormat('es-ES', {
+        style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1
+      }).format(ratio);
+    } catch { return (ratio * 100).toFixed(1).replace('.', ',') + ' %'; }
+  }
 };
 
-/* ---------- Store (v5 - Curso 2026-2027) ---------- */
+/* ---------- Store (v6 - Curso 2026-2027) ---------- */
 const Store = {
-  K_VOTOS: 'fisica10_panel_votos_2026_v5',
-  K_OPINIONES: 'fisica10_panel_opiniones_2026_v5',
-  K_DRAFT: 'fisica10_panel_draft_2026_v5',
+  K_VOTOS: 'fisica10_panel_votos_2026_v6',
+  K_OPINIONES: 'fisica10_panel_opiniones_2026_v6',
+  K_DRAFT: 'fisica10_panel_draft_2026_v6',
   getVotos() { try { return JSON.parse(localStorage.getItem(this.K_VOTOS) || '{}'); } catch { return {}; } },
   setVotos(v) { localStorage.setItem(this.K_VOTOS, JSON.stringify(v)); },
   getOpiniones() { try { return JSON.parse(localStorage.getItem(this.K_OPINIONES) || '[]'); } catch { return []; } },
@@ -267,10 +281,32 @@ const PREGUNTAS = [
   { id: 'p10', texto: '¿Utilizas dispositivos tecnológicos (móvil, PC) para estudiar o practicar Física?', opciones: ['Frecuentemente', 'Ocasionalmente', 'Rara vez', 'Nunca'] }
 ];
 
+/* ---------- Plugin Chart.js: "Sin datos aún" ---------- */
+const emptyStatePlugin = {
+  id: 'emptyState',
+  afterDraw(chart) {
+    const allData = chart.data.datasets.flatMap(ds => ds.data || []);
+    if (allData.length === 0 || allData.every(v => !v || Number(v) === 0)) {
+      const { ctx, chartArea } = chart;
+      if (!chartArea) return;
+      const { top, bottom, left, right } = chartArea;
+      ctx.save();
+      ctx.fillStyle = 'rgba(160,184,208,.65)';
+      ctx.font = '500 13px "Segoe UI", Roboto, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('Sin datos aún', (left + right) / 2, (top + bottom) / 2);
+      ctx.restore();
+    }
+  }
+};
+
 /* ---------- App ---------- */
 const App = {
   charts: {},
   renderScheduled: false,
+  chartsAvailable: false,
+
   scheduleRender() {
     if (this.renderScheduled) return;
     this.renderScheduled = true;
@@ -279,18 +315,20 @@ const App = {
       this.renderCharts();
       this.renderTable();
       this.renderOpiniones();
-      this.renderProgress();
       this.renderScheduled = false;
     });
   },
+
   renderStats() {
     const votos = Store.getVotos();
     const opiniones = Store.getOpiniones();
+
     let totalVotos = 0;
     for (const p of PREGUNTAS) {
       const c = votos[p.id] || {};
       totalVotos += Object.values(c).reduce((a, b) => a + b, 0);
     }
+
     const pesosP1 = { 'Siempre': 5, 'Casi siempre': 4, 'A veces': 3, 'Casi nunca': 2, 'Nunca': 1 };
     const p1 = votos.p1 || {};
     let sumP = 0, totP = 0;
@@ -298,43 +336,70 @@ const App = {
       if (pesosP1[k]) { sumP += pesosP1[k] * v; totP += v; }
     }
     const satisfaccion = totP > 0 ? Math.round((sumP / (totP * 5)) * 100) : null;
+
     const p3 = votos.p3 || {};
     const totP3 = Object.values(p3).reduce((a, b) => a + b, 0);
     const domina = (p3['Totalmente'] || 0) + (p3['Parcialmente'] || 0);
     const dominio = totP3 > 0 ? Math.round((domina / totP3) * 100) : null;
+
     document.getElementById('statVotos').textContent = UI.formatNumber(totalVotos);
     document.getElementById('statOpiniones').textContent = UI.formatNumber(opiniones.length);
     document.getElementById('statSatisfaccion').textContent = satisfaccion !== null ? `${satisfaccion}%` : '—';
     document.getElementById('statHabilidades').textContent = dominio !== null ? `${dominio}%` : '—';
+
+    document.getElementById('statVotosHint').textContent =
+      totalVotos > 0 ? `${PREGUNTAS.length} preguntas evaluadas` : 'Sin registros aún';
+    document.getElementById('statOpinionesHint').textContent =
+      opiniones.length > 0 ? `Última: ${UI.formatDate(opiniones[opiniones.length - 1].fecha)}` : 'Sin registros aún';
   },
+
   initCharts() {
+    if (typeof Chart === 'undefined') {
+      this.chartsAvailable = false;
+      UI.toast('No se pudieron cargar las gráficas (CDN). Los datos siguen disponibles en la tabla.', 'err', 6000);
+      return;
+    }
+    this.chartsAvailable = true;
+
     const baseOpts = {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: '#a0b8d0', font: { size: 10 } } } },
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#a0b8d0', font: { size: 10 } } },
+        emptyState: {}
+      },
       scales: {
         y: { beginAtZero: true, ticks: { color: '#a0b8d0', precision: 0 }, grid: { color: 'rgba(255,255,255,.05)' } },
         x: { ticks: { color: '#a0b8d0', maxRotation: 45, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,.05)' } }
       }
     };
+
     this.charts.comprension = new Chart(document.getElementById('chartComprension'), {
       type: 'bar',
       data: { labels: [], datasets: [] },
-      options: { ...baseOpts, plugins: { legend: { display: true, labels: { color: '#a0b8d0', font: { size: 10 } } } } }
+      options: baseOpts,
+      plugins: [emptyStatePlugin]
     });
+
     this.charts.habilidades = new Chart(document.getElementById('chartHabilidades'), {
       type: 'doughnut',
       data: { labels: [], datasets: [{ data: [], backgroundColor: ['#4fc3f7', '#f0b429', '#2ecc71', '#e74c3c'], borderColor: 'rgba(10,15,30,.8)', borderWidth: 2 }] },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#a0b8d0', font: { size: 10 } } } } }
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#a0b8d0', font: { size: 10 } } } } },
+      plugins: [emptyStatePlugin]
     });
+
     this.charts.causa = new Chart(document.getElementById('chartCausa'), {
       type: 'pie',
       data: { labels: [], datasets: [{ data: [], backgroundColor: ['#4fc3f7', '#f0b429', '#2ecc71', '#e74c3c', '#9b59b6'], borderColor: 'rgba(10,15,30,.8)', borderWidth: 2 }] },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#a0b8d0', font: { size: 10 } } } } }
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#a0b8d0', font: { size: 10 } } } } },
+      plugins: [emptyStatePlugin]
     });
   },
+
   renderCharts() {
-    if (!this.charts.comprension) return;
+    if (!this.chartsAvailable || !this.charts.comprension) return;
     const votos = Store.getVotos();
+
     const labelsCmp = ['Siempre / Sin dificultad', 'Casi siempre / Poca ayuda', 'A veces / Mucha ayuda', 'Casi nunca', 'Nunca / No puedo'];
     const dataComp = [
       (votos.p1 && votos.p1['Siempre']) || 0,
@@ -350,13 +415,12 @@ const App = {
       0,
       (votos.p2 && votos.p2['No puedo']) || 0
     ];
-    this.charts.comprension.data = {
-      labels: labelsCmp,
-      datasets: [
-        { label: 'Comprensión', data: dataComp, backgroundColor: 'rgba(79,195,247,.7)', borderColor: '#4fc3f7', borderWidth: 1 },
-        { label: 'Resolución', data: dataRes, backgroundColor: 'rgba(240,180,41,.7)', borderColor: '#f0b429', borderWidth: 1 }
-      ]
-    };
+
+    this.charts.comprension.data.labels = labelsCmp;
+    this.charts.comprension.data.datasets = [
+      { label: 'Comprensión (P1)', data: dataComp, backgroundColor: 'rgba(79,195,247,.7)', borderColor: '#4fc3f7', borderWidth: 1 },
+      { label: 'Resolución (P2)', data: dataRes, backgroundColor: 'rgba(240,180,41,.7)', borderColor: '#f0b429', borderWidth: 1 }
+    ];
     this.charts.comprension.update();
 
     const labelsP3 = ['Totalmente', 'Parcialmente', 'No', 'No sé'];
@@ -369,20 +433,33 @@ const App = {
     this.charts.causa.data.datasets[0].data = labelsP4.map(l => (votos.p4 && votos.p4[l]) || 0);
     this.charts.causa.update();
   },
+
   renderTable() {
     const votos = Store.getVotos();
     const tbody = document.getElementById('tablaBody');
-    const frag = document.createDocumentFragment();
+    tbody.innerHTML = '';
     let totalGeneral = 0;
+    let algunaFila = false;
+
     PREGUNTAS.forEach(p => {
       const c = votos[p.id] || {};
       const totalPreg = Object.values(c).reduce((a, b) => a + b, 0);
       totalGeneral += totalPreg;
       if (totalPreg === 0) return;
+      algunaFila = true;
+
+      // Determinar la opción más votada para resaltarla
+      let topOption = null, topValue = -1;
+      p.opciones.forEach(op => {
+        const v = c[op] || 0;
+        if (v > topValue) { topValue = v; topOption = op; }
+      });
+
       p.opciones.forEach((op, idx) => {
         const v = c[op] || 0;
-        const pct = ((v / totalPreg) * 100).toFixed(1);
+        const pct = UI.formatPercent(v / totalPreg);
         const tr = document.createElement('tr');
+
         if (idx === 0) {
           const tdP = document.createElement('td');
           tdP.textContent = p.texto;
@@ -391,18 +468,34 @@ const App = {
           tdP.style.color = '#4fc3f7';
           tr.appendChild(tdP);
         }
-        tr.innerHTML += `<td>${UI.escapeHTML(op)}</td><td>${v}</td><td>${pct}%</td>`;
-        frag.appendChild(tr);
+
+        const tdOp = document.createElement('td');
+        tdOp.textContent = op;
+        if (op === topOption && v > 0) tdOp.classList.add('top-option');
+
+        const tdV = document.createElement('td');
+        tdV.textContent = v;
+        if (op === topOption && v > 0) tdV.classList.add('top-option');
+
+        const tdPct = document.createElement('td');
+        tdPct.textContent = pct;
+        if (op === topOption && v > 0) tdPct.classList.add('top-option');
+
+        tr.appendChild(tdOp);
+        tr.appendChild(tdV);
+        tr.appendChild(tdPct);
+        tbody.appendChild(tr);
       });
     });
-    tbody.innerHTML = '';
-    if (!frag.childNodes.length) {
+
+    if (!algunaFila) {
       tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:#7a9bb5;font-style:italic;padding:1.5rem">Aún no hay votos registrados en el curso 2026–2027.</td></tr>`;
-    } else {
-      tbody.appendChild(frag);
     }
-    document.getElementById('totalVotosNota').textContent = `Total de votos registrados (2026–2027): ${totalGeneral}`;
+
+    document.getElementById('totalVotosNota').textContent =
+      `Total de votos registrados (2026–2027): ${UI.formatNumber(totalGeneral)}`;
   },
+
   renderOpiniones() {
     const ops = Store.getOpiniones();
     const cont = document.getElementById('listaOpiniones');
@@ -414,6 +507,7 @@ const App = {
       `<div class="opinion-item">${UI.escapeHTML(o.texto)}<span class="fecha">${UI.formatDate(o.fecha)}</span></div>`
     ).join('');
   },
+
   renderProgress() {
     const form = document.getElementById('formVotacion');
     let answered = 0;
@@ -421,25 +515,47 @@ const App = {
       if (form.querySelector(`input[name="${p.id}"]:checked`)) answered++;
     });
     const total = PREGUNTAS.length;
-    document.getElementById('progressBar').style.width = (answered / total * 100) + '%';
-    document.getElementById('progressText').textContent = `Progreso: ${answered} / ${total} preguntas respondidas`;
+    const pct = (answered / total) * 100;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressLine').classList.toggle('complete', answered === total);
+    document.getElementById('progressText').textContent =
+      `Progreso: ${answered} / ${total} preguntas respondidas` +
+      (answered === total ? ' ✓' : '');
   }
 };
 
-/* ---------- Renderizar formulario ---------- */
+/* ---------- Renderizar formulario (IDEMPOTENTE) ---------- */
 const preguntasContainer = document.getElementById('preguntasContainer');
+// IMPORTANTE: limpiar antes de insertar, por si el HTML ya trae preguntas
+// (por ejemplo, si el archivo desplegado fue generado con un clone que las contenía).
+preguntasContainer.innerHTML = '';
+
 PREGUNTAS.forEach(p => {
   const div = document.createElement('div');
   div.className = 'pregunta';
-  div.innerHTML = `<p>${UI.escapeHTML(p.texto)}</p>`;
+  div.dataset.pid = p.id;
+
+  const pEl = document.createElement('p');
+  pEl.textContent = p.texto;
+  div.appendChild(pEl);
+
   const ops = document.createElement('div');
   ops.className = 'opciones';
+  ops.setAttribute('role', 'radiogroup');
+  ops.setAttribute('aria-label', p.texto);
+
   p.opciones.forEach(op => {
     const label = document.createElement('label');
     label.className = 'opcion';
-    label.innerHTML = `<input type="radio" name="${p.id}" value="${UI.escapeHTML(op)}" required> ${UI.escapeHTML(op)}`;
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = p.id;
+    input.value = op;
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(' ' + op));
     ops.appendChild(label);
   });
+
   div.appendChild(ops);
   preguntasContainer.appendChild(div);
 });
@@ -449,20 +565,47 @@ const formVotacion = document.getElementById('formVotacion');
 const btnEnviarVotos = document.getElementById('btnEnviarVotos');
 let enviandoVotos = false;
 
-formVotacion.addEventListener('change', () => App.scheduleRender());
+// Cambio en radio: sólo actualiza progreso y limpia marca "unanswered"
+formVotacion.addEventListener('change', e => {
+  if (e.target && e.target.name) {
+    const wrapper = e.target.closest('.pregunta');
+    if (wrapper) wrapper.classList.remove('unanswered');
+    App.renderProgress();
+  }
+});
 
 formVotacion.addEventListener('submit', e => {
   e.preventDefault();
   if (enviandoVotos) return;
+
   const formData = new FormData(formVotacion);
   const entries = [...formData.entries()];
-  if (entries.length < PREGUNTAS.length) {
-    UI.toast(`Responde las ${PREGUNTAS.length} preguntas antes de enviar`, 'err');
+  const missing = PREGUNTAS.filter(p => !formData.get(p.id));
+
+  if (missing.length > 0) {
+    // Marcar y saltar a la primera pregunta incompleta
+    PREGUNTAS.forEach(p => {
+      const wrapper = formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`);
+      if (wrapper) wrapper.classList.toggle('unanswered', !formData.get(p.id));
+    });
+    const firstMissing = missing[0];
+    const firstEl = formVotacion.querySelector(`input[name="${firstMissing.id}"]`);
+    if (firstEl) {
+      firstEl.closest('.pregunta').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstEl.focus({ preventScroll: true });
+    }
+    UI.toast(
+      `Faltan ${missing.length} pregunta${missing.length === 1 ? '' : 's'} por responder.`,
+      'err'
+    );
     return;
   }
+
   enviandoVotos = true;
   btnEnviarVotos.disabled = true;
+  const originalLabel = btnEnviarVotos.innerHTML;
   btnEnviarVotos.innerHTML = '<span class="spinner"></span> Guardando…';
+
   try {
     const votos = Store.getVotos();
     for (const [pid, valor] of entries) {
@@ -471,14 +614,26 @@ formVotacion.addEventListener('submit', e => {
     }
     Store.setVotos(votos);
     formVotacion.reset();
+    PREGUNTAS.forEach(p => {
+      const w = formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`);
+      if (w) w.classList.remove('unanswered');
+    });
     App.scheduleRender();
-    UI.toast('¡Gracias! Tus respuestas han sido registradas (2026–2027).', 'ok');
+    App.renderProgress();
+
+    UI.toast(`¡Gracias! ${PREGUNTAS.length} respuestas registradas (2026–2027).`, 'ok', 4000);
+
+    // Retroalimentación: llevar al usuario a los resultados
+    setTimeout(() => {
+      const section = document.getElementById('chartsSection');
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 500);
   } catch (err) {
     UI.toast('Error al guardar: ' + err.message, 'err');
   } finally {
     setTimeout(() => {
       btnEnviarVotos.disabled = false;
-      btnEnviarVotos.innerHTML = 'Enviar mis respuestas';
+      btnEnviarVotos.innerHTML = originalLabel;
       enviandoVotos = false;
     }, 400);
   }
@@ -489,33 +644,57 @@ const formOpinion = document.getElementById('formOpinion');
 const textoOpinion = document.getElementById('textoOpinion');
 const btnEnviarOpinion = document.getElementById('btnEnviarOpinion');
 const charCount = document.getElementById('charCount');
+let enviandoOpinion = false;
 
 textoOpinion.value = Store.getDraft();
 charCount.textContent = textoOpinion.value.length;
 
+function updateCharCount() {
+  const len = textoOpinion.value.length;
+  charCount.textContent = len;
+  charCount.classList.toggle('warn', len > 240 && len <= 270);
+  charCount.classList.toggle('danger', len > 270);
+}
+
 textoOpinion.addEventListener('input', () => {
-  charCount.textContent = textoOpinion.value.length;
+  updateCharCount();
   Store.setDraft(textoOpinion.value);
 });
+updateCharCount();
 
 formOpinion.addEventListener('submit', e => {
   e.preventDefault();
+  if (enviandoOpinion) return;
+
   const texto = textoOpinion.value.trim();
   if (texto.length < 5) {
     UI.toast('Escribe una opinión más detallada (mínimo 5 caracteres).', 'err');
+    textoOpinion.focus();
     return;
   }
+
+  enviandoOpinion = true;
+  btnEnviarOpinion.disabled = true;
+  const originalLabel = btnEnviarOpinion.innerHTML;
+  btnEnviarOpinion.innerHTML = '<span class="spinner"></span> Publicando…';
+
   try {
     const ops = Store.getOpiniones();
     ops.push({ texto, fecha: new Date().toISOString() });
     Store.setOpiniones(ops);
     textoOpinion.value = '';
     Store.setDraft('');
-    charCount.textContent = '0';
+    updateCharCount();
     App.scheduleRender();
     UI.toast('¡Opinión publicada!', 'ok');
   } catch (err) {
     UI.toast('Error: ' + err.message, 'err');
+  } finally {
+    setTimeout(() => {
+      btnEnviarOpinion.disabled = false;
+      btnEnviarOpinion.innerHTML = originalLabel;
+      enviandoOpinion = false;
+    }, 400);
   }
 });
 
@@ -524,7 +703,7 @@ document.getElementById('btnExportar').addEventListener('click', () => {
   const data = {
     meta: {
       app: 'Fisica10mo-RLRN',
-      version: 5,
+      version: 6,
       curso: '2026-2027',
       anio: 2026,
       exportedAt: new Date().toISOString()
@@ -573,38 +752,65 @@ document.getElementById('inputImportar').addEventListener('change', e => {
 });
 
 document.getElementById('btnReset').addEventListener('click', () => {
-  if (!confirm('¿Borrar TODOS los votos y opiniones del curso 2026–2027 de este dispositivo? Esta acción no se puede deshacer.')) return;
+  // Conteo previo para retroalimentación informativa
+  const votos = Store.getVotos();
+  let totalVotos = 0;
+  for (const p of PREGUNTAS) {
+    totalVotos += Object.values(votos[p.id] || {}).reduce((a, b) => a + b, 0);
+  }
+  const totalOps = Store.getOpiniones().length;
+
+  const msg =
+    `¿Borrar TODOS los datos del curso 2026–2027?\n\n` +
+    `Se eliminarán:\n` +
+    `• ${UI.formatNumber(totalVotos)} voto(s)\n` +
+    `• ${UI.formatNumber(totalOps)} opinión(es)\n\n` +
+    `Esta acción no se puede deshacer.`;
+
+  if (!confirm(msg)) return;
   Store.reset();
   formVotacion.reset();
+  PREGUNTAS.forEach(p => {
+    const w = formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`);
+    if (w) w.classList.remove('unanswered');
+  });
   textoOpinion.value = '';
-  charCount.textContent = '0';
+  updateCharCount();
   App.scheduleRender();
+  App.renderProgress();
   UI.toast('Datos del curso 2026–2027 borrados del dispositivo', 'info');
 });
 
 /* ---------- Inicialización ---------- */
 window.addEventListener('load', () => {
   if (window.particlesJS) {
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 55, density: { enable: true, value_area: 800 } },
-        color: { value: ['#4fc3f7', '#2d7ab8', '#f0b429'] },
-        shape: { type: 'circle' },
-        opacity: { value: 0.4, random: true },
-        size: { value: 2.8, random: true },
-        line_linked: { enable: true, distance: 150, color: '#4fc3f7', opacity: 0.2, width: 1 },
-        move: { enable: true, speed: 1.1, direction: 'none', random: true, straight: false, out_mode: 'out' }
-      },
-      interactivity: {
-        detect_on: 'canvas',
-        events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
-        modes: { grab: { distance: 170, line_linked: { opacity: 0.5 } }, push: { particles_nb: 3 } }
-      },
-      retina_detect: true
-    });
+    try {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 55, density: { enable: true, value_area: 800 } },
+          color: { value: ['#4fc3f7', '#2d7ab8', '#f0b429'] },
+          shape: { type: 'circle' },
+          opacity: { value: 0.4, random: true },
+          size: { value: 2.8, random: true },
+          line_linked: { enable: true, distance: 150, color: '#4fc3f7', opacity: 0.2, width: 1 },
+          move: { enable: true, speed: 1.1, direction: 'none', random: true, straight: false, out_mode: 'out' }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
+          modes: { grab: { distance: 170, line_linked: { opacity: 0.5 } }, push: { particles_nb: 3 } }
+        },
+        retina_detect: true
+      });
+    } catch (err) {
+      console.warn('particles.js no se pudo inicializar:', err);
+    }
   }
+
   App.initCharts();
   App.scheduleRender();
+  App.renderProgress();
+
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) App.scheduleRender();
   });
