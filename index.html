@@ -3,7 +3,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de Diagnóstico 2026–2027 | Física 10mo Grado</title>
-  <!-- Fuentes: Serif para títulos, Sans-serif para datos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700;900&amp;display=swap" rel="stylesheet">
@@ -11,20 +10,19 @@
   
   <style>
     :root {
-      --bg-color: #F4EFE6; /* Fondo crema de la infografía */
-      --text-main: #2A1A1F; /* Marrón muy oscuro/ciruela para texto */
+      --bg-color: #F4EFE6;
+      --text-main: #2A1A1F;
       --text-muted: #5C4B51;
-      --primary: #7A2E4D; /* Color principal (Ciruela) */
+      --primary: #7A2E4D;
       --primary-light: #B26B8E;
-      --accent: #C93C4C; /* Rojo de los triángulos/barras */
+      --accent: #C93C4C;
       --card-bg: #FFFFFF;
       --border-color: #D8CEC2;
     }
 
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-    body{background-color:var(--bg-color);color:var(--text-main);line-height:1.5;min-height:100vh}
+    body{background-color:var(--bg-color);color:var(--text-main);line-height:1.5;min-height:100vh;overflow-x:hidden;perspective: 1000px;}
     
-    /* Tipografía Editorial */
     h1, h2, h3, .stat-value, .badge, th {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
@@ -32,12 +30,12 @@
     }
 
     /* Header */
-    header{border-bottom:3px solid var(--primary);padding:2rem 1rem;text-align:center;margin-bottom:2rem;background:var(--card-bg)}
+    header{border-bottom:3px solid var(--primary);padding:2rem 1rem;text-align:center;margin-bottom:2rem;background:var(--card-bg);box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; z-index: 10;}
     header h1{font-size:2.4rem;margin-bottom:.2rem;line-height:1.1}
     header h2{font-family:'Inter',sans-serif;font-size:1rem;font-weight:500;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
-    .badge{display:inline-block;background:var(--primary);color:#fff;padding:.3rem 1.2rem;border-radius:4px;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;margin-top:1rem;letter-spacing:1px}
+    .badge{display:inline-block;background:var(--primary);color:#fff;padding:.3rem 1.2rem;border-radius:4px;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;margin-top:1rem;letter-spacing:1px;box-shadow: 0 4px 8px rgba(122,46,77,0.3); transform: translateZ(20px);}
 
-    .container{max-width:1200px;margin:0 auto;padding:0 1.5rem 3rem}
+    .container{max-width:1200px;margin:0 auto;padding:0 1.5rem 3rem; position: relative; z-index: 2;}
 
     /* Intro Box */
     .intro-box{border-left:4px solid var(--accent);background:var(--card-bg);padding:1.2rem 1.5rem;margin-bottom:2rem;box-shadow:0 2px 10px rgba(0,0,0,.05);border-radius:0 8px 8px 0}
@@ -47,26 +45,26 @@
 
     /* Grid Stats */
     .grid-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:2rem}
-    .stat-card{background:var(--card-bg);padding:1.5rem;border-radius:8px;border:1px solid var(--border-color);border-top:4px solid var(--primary);text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.03);position:relative}
-    .stat-value{font-size:2.2rem;color:var(--primary);line-height:1;margin-bottom:.5rem}
-    .stat-label{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
-    .stat-hint{font-size:.7rem;color:#999;margin-top:.4rem;font-style:italic}
+    .stat-card{background:var(--card-bg);padding:1.5rem;border-radius:8px;border:1px solid var(--border-color);border-top:4px solid var(--primary);text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.03);position:relative; transform-style: preserve-3d; transition: transform 0.1s ease-out;}
+    .stat-value{font-size:2.2rem;color:var(--primary);line-height:1;margin-bottom:.5rem; transform: translateZ(15px);}
+    .stat-label{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600; transform: translateZ(5px);}
+    .stat-hint{font-size:.7rem;color:#999;margin-top:.4rem;font-style:italic; transform: translateZ(5px);}
 
     /* Layouts */
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2rem}
     
-    /* Cards */
-    .card{background:var(--card-bg);padding:2rem;border-radius:8px;border:1px solid var(--border-color);box-shadow:0 4px 12px rgba(0,0,0,.03)}
-    .card h3{font-size:1.4rem;border-bottom:2px solid var(--primary);padding-bottom:.5rem;margin-bottom:.5rem}
-    .card .subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:1.5rem}
+    /* Cards (Base para 3D) */
+    .card{background:var(--card-bg);padding:2rem;border-radius:8px;border:1px solid var(--border-color);box-shadow:0 4px 12px rgba(0,0,0,.03); transform-style: preserve-3d; transition: transform 0.1s ease-out, box-shadow 0.3s ease;}
+    .card h3{font-size:1.4rem;border-bottom:2px solid var(--primary);padding-bottom:.5rem;margin-bottom:.5rem; transform: translateZ(10px);}
+    .card .subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:1.5rem; transform: translateZ(5px);}
 
-    /* Preguntas y Formulario */
-    .pregunta{margin-bottom:1.5rem}
+    /* Preguntas */
+    .pregunta{margin-bottom:1.5rem; transition: background 0.3s;}
     .pregunta p{font-weight:600;font-size:.9rem;margin-bottom:.6rem;color:var(--text-main)}
     .opciones{display:flex;flex-direction:column;gap:.4rem}
     .opcion{display:flex;align-items:center;background:#FAF8F5;padding:.5rem .8rem;border-radius:4px;border:1px solid var(--border-color);cursor:pointer;transition:all .2s}
-    .opcion:hover{background:#F0EAE1;border-color:var(--primary-light)}
+    .opcion:hover{background:#F0EAE1;border-color:var(--primary-light); transform: translateX(5px);}
     .opcion input[type=radio]{margin-right:.6rem;accent-color:var(--primary);width:16px;height:16px;cursor:pointer}
     .opcion label{cursor:pointer;font-size:.85rem;flex:1;color:var(--text-main)}
     
@@ -75,25 +73,34 @@
     .progress-line > div{height:100%;width:0;background:var(--accent);transition:width .3s ease}
     .progress-line.complete > div{background:var(--primary)}
 
-    /* Botones */
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:var(--primary);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:4px;font-weight:600;font-size:.9rem;cursor:pointer;transition:background .2s;margin-top:.5rem;width:100%}
-    .btn:hover:not(:disabled){background:#5A1E37}
-    .btn:disabled{opacity:.6;cursor:not-allowed}
-    .btn-secondary{background:var(--accent)}
-    .btn-secondary:hover:not(:disabled){background:#A62A38}
-    .btn-danger{background:var(--text-main);width:auto}
+    /* Botones 3D */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:var(--primary);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:4px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .15s ease;margin-top:.5rem;width:100%;box-shadow: 0 4px 0 #5A1E37; position: relative; top: 0;}
+    .btn:hover:not(:disabled){background:#5A1E37; top: -2px; box-shadow: 0 6px 0 #5A1E37;}
+    .btn:active:not(:disabled){top: 2px; box-shadow: 0 2px 0 #5A1E37;}
+    .btn:disabled{opacity:.6;cursor:not-allowed; box-shadow: none; background: #999;}
+    .btn-secondary{background:var(--accent); box-shadow: 0 4px 0 #A62A38;}
+    .btn-secondary:hover:not(:disabled){background:#A62A38; box-shadow: 0 6px 0 #A62A38;}
+    .btn-secondary:active:not(:disabled){box-shadow: 0 2px 0 #A62A38;}
+    .btn-danger{background:var(--text-main);width:auto; box-shadow: 0 4px 0 #110B0D;}
+    .btn-danger:hover:not(:disabled){background:#110B0D; box-shadow: 0 6px 0 #110B0D;}
     .btn-sm{padding:.5rem 1rem;font-size:.8rem;width:auto}
     .btn-group{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
 
+    /* Mensaje de Bloqueo */
+    .voted-message {display: none; background: #E8F5E9; color: #2E7D32; padding: 1rem; border-radius: 4px; text-align: center; border: 1px solid #A5D6A7; margin-top: 1rem; font-weight: 600;}
+    .voted-message.visible {display: block; animation: fadeIn 0.5s;}
+
     /* Textarea y Opiniones */
-    textarea{width:100%;padding:.8rem;border:1px solid var(--border-color);border-radius:4px;font-size:.9rem;resize:vertical;min-height:80px;font-family:'Inter',sans-serif;background:#FAF8F5;color:var(--text-main)}
-    textarea:focus{outline:none;border-color:var(--primary)}
+    textarea{width:100%;padding:.8rem;border:1px solid var(--border-color);border-radius:4px;font-size:.9rem;resize:vertical;min-height:80px;font-family:'Inter',sans-serif;background:#FAF8F5;color:var(--text-main);transition: border-color 0.3s;}
+    textarea:focus{outline:none;border-color:var(--primary); box-shadow: 0 0 0 3px rgba(122,46,77,0.1);}
     .char-count{font-size:.75rem;color:var(--text-muted);text-align:right;margin-top:.3rem}
     .opiniones-list{margin-top:1.5rem;max-height:250px;overflow-y:auto;padding-right:.5rem}
-    .opinion-item{background:#FAF8F5;border-left:3px solid var(--accent);padding:.8rem 1rem;margin-bottom:.8rem;font-size:.85rem;color:var(--text-main)}
+    .opinion-item{background:#FAF8F5;border-left:3px solid var(--accent);padding:.8rem 1rem;margin-bottom:.8rem;font-size:.85rem;color:var(--text-main); transition: transform 0.2s;}
+    .opinion-item:hover {transform: translateX(5px);}
     .opinion-item .fecha{display:block;font-size:.7rem;color:var(--text-muted);margin-top:.4rem}
     
-    .habilidades-tag{display:inline-block;background:#EBE4D8;color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.75rem;margin:.2rem;font-weight:600}
+    .habilidades-tag{display:inline-block;background:#EBE4D8;color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.75rem;margin:.2rem;font-weight:600; transition: transform 0.2s;}
+    .habilidades-tag:hover{transform: scale(1.05);}
 
     /* Tabla */
     .table-wrap{overflow-x:auto;max-height:400px;margin-top:1rem}
@@ -104,7 +111,7 @@
     .top-option{color:var(--accent);font-weight:700}
 
     /* Gráficos */
-    .chart-container{position:relative;height:250px;width:100%}
+    .chart-container{position:relative;height:250px;width:100%; transform: translateZ(20px);}
     
     /* Logs de Deploy */
     .config-input{width:100%;padding:.7rem;border:1px solid var(--border-color);border-radius:4px;font-size:.9rem;margin-bottom:.8rem;background:#FAF8F5}
@@ -113,15 +120,14 @@
     .config-log.visible{display:block}
     .config-log .step.ok{color:#4CAF50}
     .config-log .step.err{color:#F44336}
-    .config-log .step.info{color:#64B5F6}
     .config-success{background:#E8F5E9;border:1px solid #A5D6A7;color:#2E7D32;padding:1rem;border-radius:4px;margin-top:1rem;display:none}
     .config-success.visible{display:block}
     .config-success a{color:var(--primary);font-weight:bold;word-break:break-all}
 
-    /* Utilidades */
     .nota{font-size:.75rem;color:#999;margin-top:1rem;font-style:italic}
     .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes fadeIn {from{opacity:0}to{opacity:1}}
     
     /* Toasts */
     .toast-container{position:fixed;top:1rem;right:1rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;max-width:340px}
@@ -166,17 +172,24 @@
       <h3>Medidores de Opinión</h3>
       <p class="subtitle" id="progressText">Progreso: 0 / 10 preguntas respondidas</p>
       <div class="progress-line" id="progressLine"><div id="progressBar" style="width: 0%;"></div></div>
-      <form id="formVotacion" novalidate="" autocomplete="off">
+      
+      <!-- Formulario de Votación -->
+      <form id="formVotacion" novalidate="" autocomplete="off" style="display: block;">
         <div id="preguntasContainer"></div>
         <button type="submit" class="btn" id="btnEnviarVotos">Enviar mis respuestas</button>
       </form>
+
+      <!-- Mensaje que aparece si ya votó -->
+      <div id="votedMessage" class="voted-message">
+        ✅ Ya has registrado tus respuestas en este dispositivo. ¡Gracias por participar!
+      </div>
     </div>
 
     <div class="card">
       <h3>Opiniones Abiertas</h3>
       <p class="subtitle">Comparte sugerencias o dificultades específicas (sin datos personales).</p>
       <form id="formOpinion" novalidate="" autocomplete="off">
-        <textarea id="textoOpinion" placeholder="Ejemplo: Me gustaría más tiempo para practicar ejercicios..." maxlength="300" required="" style="height: 310px;"></textarea>
+        <textarea id="textoOpinion" placeholder="Ejemplo: Me gustaría más tiempo para practicar ejercicios..." maxlength="300" required=""></textarea>
         <div class="char-count"><span id="charCount">0</span> / 300</div>
         <button type="submit" class="btn btn-secondary" id="btnEnviarOpinion">Publicar opinión</button>
       </form>
@@ -197,7 +210,6 @@
     </div>
   </div>
 
-  <!-- Gráficos estilo Infografía -->
   <div class="grid-3" id="chartsSection">
     <div class="card">
       <h3>Comprensión y Ejercicios</h3>
@@ -230,11 +242,11 @@
 
   <div class="card" style="margin-top:2rem">
     <h3>Gestión de Datos</h3>
-    <p class="subtitle">Exporta, importa o reinicia los datos almacenados en este dispositivo.</p>
+    <p class="subtitle">Exporta, importa o reinicia los datos. <strong>Borrar datos también permite volver a votar.</strong></p>
     <div class="btn-group">
       <button class="btn btn-sm" id="btnExportar" type="button">⬇ Exportar JSON</button>
       <button class="btn btn-sm" id="btnImportar" type="button">⬆ Importar JSON</button>
-      <button class="btn btn-danger btn-sm" id="btnReset" type="button">🗑 Borrar datos</button>
+      <button class="btn btn-danger btn-sm" id="btnReset" type="button">🗑 Borrar datos y reiniciar</button>
     </div>
     <input type="file" id="inputImportar" accept="application/json" hidden="">
   </div>
@@ -275,16 +287,24 @@ const UI = {
 
 /* ---------- Store ---------- */
 const Store = {
-  K_VOTOS: 'fisica10_votos_v7',
-  K_OPINIONES: 'fisica10_opiniones_v7',
-  K_DRAFT: 'fisica10_draft_v7',
+  K_VOTOS: 'fisica10_votos_v8',
+  K_OPINIONES: 'fisica10_opiniones_v8',
+  K_DRAFT: 'fisica10_draft_v8',
+  K_HAS_VOTED: 'fisica10_has_voted_v8', // Bandera de bloqueo
   getVotos() { try { return JSON.parse(localStorage.getItem(this.K_VOTOS) || '{}'); } catch { return {}; } },
   setVotos(v) { localStorage.setItem(this.K_VOTOS, JSON.stringify(v)); },
   getOpiniones() { try { return JSON.parse(localStorage.getItem(this.K_OPINIONES) || '[]'); } catch { return []; } },
   setOpiniones(o) { localStorage.setItem(this.K_OPINIONES, JSON.stringify(o)); },
   getDraft() { return localStorage.getItem(this.K_DRAFT) || ''; },
   setDraft(t) { localStorage.setItem(this.K_DRAFT, t); },
-  reset() { localStorage.removeItem(this.K_VOTOS); localStorage.removeItem(this.K_OPINIONES); localStorage.removeItem(this.K_DRAFT); }
+  hasVoted() { return localStorage.getItem(this.K_HAS_VOTED) === 'true'; },
+  setHasVoted(val) { localStorage.setItem(this.K_HAS_VOTED, val); },
+  reset() { 
+    localStorage.removeItem(this.K_VOTOS); 
+    localStorage.removeItem(this.K_OPINIONES); 
+    localStorage.removeItem(this.K_DRAFT); 
+    localStorage.removeItem(this.K_HAS_VOTED); // Se borra la bandera para permitir votar de nuevo
+  }
 };
 
 /* ---------- Preguntas ---------- */
@@ -301,7 +321,7 @@ const PREGUNTAS = [
   { id: 'p10', texto: '¿Utilizas dispositivos tecnológicos para estudiar o practicar?', opciones: ['Frecuentemente', 'Ocasionalmente', 'Rara vez', 'Nunca'] }
 ];
 
-/* ---------- Plugin para dibujar porcentajes dentro de los gráficos ---------- */
+/* ---------- Plugin para dibujar porcentajes en gráficos ---------- */
 const dataLabelsPlugin = {
   id: 'dataLabels',
   afterDatasetsDraw(chart) {
@@ -377,37 +397,24 @@ const App = {
   },
 
   initCharts() {
-    if (typeof Chart === 'undefined') {
-      this.chartsAvailable = false;
-      UI.toast('No se cargaron las gráficas.', 'err');
-      return;
-    }
+    if (typeof Chart === 'undefined') return UI.toast('No se cargaron las gráficas.', 'err');
     this.chartsAvailable = true;
 
-    // Colores basados en la imagen de referencia
     const colors = ['#7A2E4D', '#B26B8E', '#C93C4C', '#E6D3D8', '#D8CEC2'];
-    
-    // Configuración global para Chart.js
     Chart.defaults.font.family = "'Inter', sans-serif";
     Chart.defaults.color = '#2A1A1F';
 
-    // 1. Gráfico de Barras Horizontales (Comprensión)
     this.charts.comprension = new Chart(document.getElementById('chartComprension'), {
       type: 'bar',
       data: { labels: [], datasets: [] },
       options: {
-        indexAxis: 'y',
-        responsive: true, maintainAspectRatio: false,
+        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false }, dataLabels: {} },
-        scales: {
-          x: { grid: { display: false }, ticks: { color: '#5C4B51' } },
-          y: { grid: { display: false }, ticks: { color: '#2A1A1F', font: { weight: '600' } } }
-        }
+        scales: { x: { grid: { display: false } }, y: { grid: { display: false } } }
       },
       plugins: [dataLabelsPlugin]
     });
 
-    // 2. Gráfico de Dona (Habilidades)
     this.charts.habilidades = new Chart(document.getElementById('chartHabilidades'), {
       type: 'doughnut',
       data: { labels: [], datasets: [{ data: [], backgroundColor: colors, borderWidth: 2, borderColor: '#fff' }] },
@@ -418,18 +425,13 @@ const App = {
       plugins: [dataLabelsPlugin]
     });
 
-    // 3. Gráfico de Barras Horizontales (Causa) - Cambiado de Pie a Bar para coincidir con el estilo de la imagen
     this.charts.causa = new Chart(document.getElementById('chartCausa'), {
       type: 'bar',
       data: { labels: [], datasets: [{ data: [], backgroundColor: '#C93C4C', borderRadius: 4 }] },
       options: {
-        indexAxis: 'y',
-        responsive: true, maintainAspectRatio: false,
+        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false }, dataLabels: {} },
-        scales: {
-          x: { grid: { display: false }, display: false },
-          y: { grid: { display: false }, ticks: { color: '#2A1A1F', font: { size: 11 } } }
-        }
+        scales: { x: { grid: { display: false }, display: false }, y: { grid: { display: false } } }
       },
       plugins: [dataLabelsPlugin]
     });
@@ -439,29 +441,22 @@ const App = {
     if (!this.chartsAvailable) return;
     const votos = Store.getVotos();
 
-    // Actualizar Comprensión (P1 y P2)
     const labelsCmp = ['Siempre', 'Casi siempre', 'A veces', 'Casi nunca', 'Nunca'];
-    const dataComp = labelsCmp.map(l => (votos.p1 && votos.p1[l]) || 0);
-    const dataRes = ['Sin dificultad', 'Con poca ayuda', 'Con mucha ayuda', 'No puedo'].map(l => (votos.p2 && votos.p2[l]) || 0);
-    
     this.charts.comprension.data.labels = labelsCmp;
     this.charts.comprension.data.datasets = [
-      { label: 'Comprensión', data: dataComp, backgroundColor: '#7A2E4D', borderRadius: 4 },
-      { label: 'Resolución', data: [dataRes[0], dataRes[1], dataRes[2], 0, dataRes[3]], backgroundColor: '#C93C4C', borderRadius: 4 }
+      { label: 'Comprensión', data: labelsCmp.map(l => (votos.p1 && votos.p1[l]) || 0), backgroundColor: '#7A2E4D', borderRadius: 4 },
+      { label: 'Resolución', data: ['Sin dificultad', 'Con poca ayuda', 'Con mucha ayuda', 'No puedo'].map(l => (votos.p2 && votos.p2[l]) || 0).concat([0]), backgroundColor: '#C93C4C', borderRadius: 4 }
     ];
     this.charts.comprension.update();
 
-    // Actualizar Habilidades (P3)
     const labelsP3 = ['Totalmente', 'Parcialmente', 'No', 'No sé'];
     this.charts.habilidades.data.labels = labelsP3;
     this.charts.habilidades.data.datasets[0].data = labelsP3.map(l => (votos.p3 && votos.p3[l]) || 0);
     this.charts.habilidades.update();
 
-    // Actualizar Causa (P4)
     const labelsP4 = ['Explicación', 'Falta de base', 'Pocos ejercicios', 'Falta de estudio', 'Otra'];
-    const dataP4 = ['Explicación del profesor', 'Falta de base previa', 'Pocos ejercicios', 'Falta de estudio', 'Otra'].map(l => (votos.p4 && votos.p4[l]) || 0);
     this.charts.causa.data.labels = labelsP4;
-    this.charts.causa.data.datasets[0].data = dataP4;
+    this.charts.causa.data.datasets[0].data = ['Explicación del profesor', 'Falta de base previa', 'Pocos ejercicios', 'Falta de estudio', 'Otra'].map(l => (votos.p4 && votos.p4[l]) || 0);
     this.charts.causa.update();
   },
 
@@ -519,12 +514,24 @@ const App = {
     document.getElementById('progressBar').style.width = (answered / total * 100) + '%';
     document.getElementById('progressLine').classList.toggle('complete', answered === total);
     document.getElementById('progressText').textContent = `Progreso: ${answered} / ${total} preguntas respondidas` + (answered === total ? ' ✓' : '');
+  },
+
+  checkVoteStatus() {
+    const form = document.getElementById('formVotacion');
+    const msg = document.getElementById('votedMessage');
+    if (Store.hasVoted()) {
+      form.style.display = 'none';
+      msg.classList.add('visible');
+    } else {
+      form.style.display = 'block';
+      msg.classList.remove('visible');
+    }
   }
 };
 
 /* ---------- Renderizar formulario ---------- */
 const preguntasContainer = document.getElementById('preguntasContainer');
-preguntasContainer.innerHTML = ''; // Limpieza idempotente
+preguntasContainer.innerHTML = ''; 
 
 PREGUNTAS.forEach(p => {
   const div = document.createElement('div');
@@ -558,7 +565,7 @@ formVotacion.addEventListener('change', e => {
 
 formVotacion.addEventListener('submit', e => {
   e.preventDefault();
-  if (enviandoVotos) return;
+  if (enviandoVotos || Store.hasVoted()) return;
 
   const formData = new FormData(formVotacion);
   const entries = [...formData.entries()];
@@ -585,10 +592,12 @@ formVotacion.addEventListener('submit', e => {
       votos[pid][valor] = (votos[pid][valor] || 0) + 1;
     }
     Store.setVotos(votos);
+    Store.setHasVoted(true); // Bloquea futuros votos en este dispositivo
+    
     formVotacion.reset();
-    PREGUNTAS.forEach(p => formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`).style.background = 'transparent');
     App.scheduleRender();
-    App.renderProgress();
+    App.checkVoteStatus(); // Oculta el formulario y muestra mensaje
+    
     UI.toast('¡Respuestas registradas!', 'ok');
     document.getElementById('chartsSection').scrollIntoView({ behavior: 'smooth' });
   } catch (err) {
@@ -640,7 +649,7 @@ formOpinion.addEventListener('submit', e => {
 
 /* ---------- Gestión de Datos ---------- */
 document.getElementById('btnExportar').addEventListener('click', () => {
-  const data = { meta: { version: 7, fecha: new Date().toISOString() }, votos: Store.getVotos(), opiniones: Store.getOpiniones() };
+  const data = { meta: { version: 8, fecha: new Date().toISOString() }, votos: Store.getVotos(), opiniones: Store.getOpiniones() };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `fisica10-${Date.now()}.json`;
   document.body.appendChild(a); a.click(); a.remove(); UI.toast('Datos exportados', 'ok');
@@ -657,6 +666,8 @@ document.getElementById('inputImportar').addEventListener('change', e => {
       if (!data.votos || !data.opiniones) throw new Error();
       if (!confirm('¿Reemplazar datos actuales?')) return;
       Store.setVotos(data.votos); Store.setOpiniones(data.opiniones);
+      Store.setHasVoted(false); // Si se importan datos nuevos, permitir votar
+      App.checkVoteStatus();
       App.scheduleRender(); UI.toast('Datos importados', 'ok');
     } catch { UI.toast('Archivo inválido', 'err'); } finally { e.target.value = ''; }
   };
@@ -664,16 +675,53 @@ document.getElementById('inputImportar').addEventListener('change', e => {
 });
 
 document.getElementById('btnReset').addEventListener('click', () => {
-  if (!confirm('¿Borrar TODOS los datos?')) return;
-  Store.reset(); formVotacion.reset(); textoOpinion.value = '';
-  App.scheduleRender(); App.renderProgress(); UI.toast('Datos borrados', 'info');
+  if (!confirm('¿Borrar TODOS los datos y permitir votar de nuevo?')) return;
+  Store.reset(); 
+  formVotacion.reset(); 
+  textoOpinion.value = '';
+  App.checkVoteStatus();
+  App.scheduleRender(); 
+  App.renderProgress(); 
+  UI.toast('Datos borrados. Puedes votar de nuevo.', 'info');
 });
+
+/* ---------- Efecto 3D Tilt ---------- */
+function init3DTilt() {
+  const cards = document.querySelectorAll('.card, .stat-card');
+  
+  // Solo aplicar en dispositivos con ratón (evitar problemas en táctil)
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -5; // Max 5 grados
+        const rotateY = ((x - centerX) / centerX) * 5;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        card.style.boxShadow = '0 15px 35px rgba(0,0,0,0.1)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        card.style.boxShadow = '0 4px 12px rgba(0,0,0,.03)';
+      });
+    });
+  }
+}
 
 /* ---------- Init ---------- */
 window.addEventListener('load', () => {
   App.initCharts();
   App.scheduleRender();
   App.renderProgress();
+  App.checkVoteStatus(); // Verifica si ya votó
+  init3DTilt(); // Inicializa el efecto 3D
 });
 </script>
 
