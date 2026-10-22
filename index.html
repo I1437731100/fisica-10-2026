@@ -2,122 +2,147 @@
 <html lang="es"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0f1e">
-  <title>Panel de Diagnóstico 2026–2027 | Física 10mo Grado - IPU Roberto Leonardo Roque Núñez</title>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer=""></script>
+  <title>Panel de Diagnóstico 2026–2027 | Física 10mo Grado</title>
+  <!-- Fuentes: Serif para títulos, Sans-serif para datos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700;900&amp;display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer=""></script>
+  
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
-    body{background:linear-gradient(135deg,#0a0f1e,#0f1b2d 50%,#0a1628);background-size:400% 400%;animation:bgShift 20s ease infinite;color:#e8eef5;line-height:1.6;min-height:100vh;position:relative;overflow-x:hidden}
-    @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    #particles-js{position:fixed;inset:0;z-index:0;pointer-events:none}
-    header,.container,footer{position:relative;z-index:1}
-    header{background:rgba(10,25,47,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:2px solid rgba(100,200,255,.3);padding:1.8rem 1rem;text-align:center;box-shadow:0 4px 30px rgba(0,0,0,.3)}
-    header h1{font-size:1.7rem;margin-bottom:.4rem;text-shadow:0 0 10px rgba(100,200,255,.8),0 0 20px rgba(100,200,255,.6),0 0 40px rgba(100,200,255,.4);animation:neonPulse 3s ease-in-out infinite alternate}
-    @keyframes neonPulse{from{text-shadow:0 0 10px rgba(100,200,255,.8),0 0 20px rgba(100,200,255,.6),0 0 40px rgba(100,200,255,.4)}to{text-shadow:0 0 15px rgba(100,200,255,1),0 0 30px rgba(100,200,255,.8),0 0 60px rgba(100,200,255,.6)}}
-    header h2{font-size:1rem;font-weight:400;color:#b0d4f1}
-    .badge{display:inline-block;background:linear-gradient(90deg,#f0b429,#ffd966);color:#0b3b5c;padding:.3rem 1.2rem;border-radius:20px;font-size:.85rem;font-weight:700;margin-top:.7rem;letter-spacing:.5px;box-shadow:0 0 20px rgba(240,180,41,.6)}
-    .container{max-width:1200px;margin:0 auto;padding:1.5rem 1rem}
-    .intro-box{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-left:5px solid #4fc3f7;padding:1rem 1.2rem;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.3);margin-bottom:1.2rem;animation:fadeInUp .8s ease}
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .intro-box p{font-size:.9rem;margin-bottom:.4rem;color:#d0e2f2}
-    .intro-box p:last-child{margin-bottom:0}
-    .intro-box strong.curso{color:#f0b429;text-shadow:0 0 8px rgba(240,180,41,.6)}
+    :root {
+      --bg-color: #F4EFE6; /* Fondo crema de la infografía */
+      --text-main: #2A1A1F; /* Marrón muy oscuro/ciruela para texto */
+      --text-muted: #5C4B51;
+      --primary: #7A2E4D; /* Color principal (Ciruela) */
+      --primary-light: #B26B8E;
+      --accent: #C93C4C; /* Rojo de los triángulos/barras */
+      --card-bg: #FFFFFF;
+      --border-color: #D8CEC2;
+    }
 
-    .grid-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
-    .stat-card{background:rgba(255,255,255,.07);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:1rem 1.1rem;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.3);transition:transform .25s,box-shadow .25s;animation:fadeInUp .8s ease both}
-    .stat-card:nth-child(1){animation-delay:.05s}.stat-card:nth-child(2){animation-delay:.1s}.stat-card:nth-child(3){animation-delay:.15s}.stat-card:nth-child(4){animation-delay:.2s}
-    .stat-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(79,195,247,.2)}
-    .stat-value{font-size:1.7rem;font-weight:700;color:#4fc3f7;text-shadow:0 0 12px rgba(79,195,247,.5);line-height:1.1}
-    .stat-label{font-size:.75rem;color:#a0b8d0;text-transform:uppercase;letter-spacing:.5px;margin-top:.25rem}
-    .stat-hint{font-size:.65rem;color:#7a9bb5;margin-top:.15rem;font-style:italic;text-transform:none;letter-spacing:0}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+    body{background-color:var(--bg-color);color:var(--text-main);line-height:1.5;min-height:100vh}
+    
+    /* Tipografía Editorial */
+    h1, h2, h3, .stat-value, .badge, th {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--primary);
+    }
 
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.2rem}
-    .card{background:rgba(255,255,255,.07);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.4);padding:1.3rem;transition:transform .3s,box-shadow .3s;animation:fadeInUp .8s ease both}
-    .card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(79,195,247,.2)}
-    .card h3{color:#4fc3f7;font-size:1.1rem;margin-bottom:.3rem;border-bottom:2px solid rgba(79,195,247,.3);padding-bottom:.5rem;text-shadow:0 0 10px rgba(79,195,247,.5)}
-    .card .subtitle{font-size:.82rem;color:#a0b8d0;margin-bottom:.9rem}
-    .pregunta{margin-bottom:1rem;padding:.3rem .4rem;border-radius:8px;transition:background .3s}
-    .pregunta.unanswered{background:rgba(231,76,60,.08);outline:1px dashed rgba(231,76,60,.5)}
-    .pregunta.unanswered > p{color:#ff8f85}
-    .pregunta p{font-weight:600;font-size:.88rem;margin-bottom:.4rem;color:#e8eef5}
-    .opciones{display:flex;flex-direction:column;gap:.35rem}
-    .opcion{display:flex;align-items:center;background:rgba(255,255,255,.05);padding:.45rem .7rem;border-radius:8px;border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-    .opcion:hover{background:rgba(79,195,247,.15);border-color:#4fc3f7;transform:translateX(3px)}
-    .opcion input[type=radio]{margin-right:.55rem;accent-color:#4fc3f7;width:15px;height:15px;cursor:pointer}
-    .opcion label{cursor:pointer;font-size:.83rem;flex:1;color:#d0e2f2}
-    .progress-line{height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;margin-bottom:.8rem}
-    .progress-line > div{height:100%;width:0;background:linear-gradient(90deg,#4fc3f7,#2d7ab8);border-radius:3px;transition:width .3s ease,background .3s;box-shadow:0 0 10px rgba(79,195,247,.5)}
-    .progress-line.complete > div{background:linear-gradient(90deg,#2ecc71,#27ae60);box-shadow:0 0 10px rgba(46,204,113,.6)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:linear-gradient(135deg,#1a5a8a,#2d7ab8);color:#fff;border:none;padding:.65rem 1.5rem;border-radius:8px;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .2s;margin-top:.4rem;box-shadow:0 4px 15px rgba(26,90,138,.4)}
-    .btn:hover:not(:disabled){background:linear-gradient(135deg,#2d7ab8,#4fc3f7);box-shadow:0 6px 20px rgba(79,195,247,.5)}
+    /* Header */
+    header{border-bottom:3px solid var(--primary);padding:2rem 1rem;text-align:center;margin-bottom:2rem;background:var(--card-bg)}
+    header h1{font-size:2.4rem;margin-bottom:.2rem;line-height:1.1}
+    header h2{font-family:'Inter',sans-serif;font-size:1rem;font-weight:500;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+    .badge{display:inline-block;background:var(--primary);color:#fff;padding:.3rem 1.2rem;border-radius:4px;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;margin-top:1rem;letter-spacing:1px}
+
+    .container{max-width:1200px;margin:0 auto;padding:0 1.5rem 3rem}
+
+    /* Intro Box */
+    .intro-box{border-left:4px solid var(--accent);background:var(--card-bg);padding:1.2rem 1.5rem;margin-bottom:2rem;box-shadow:0 2px 10px rgba(0,0,0,.05);border-radius:0 8px 8px 0}
+    .intro-box p{font-size:.9rem;margin-bottom:.5rem;color:var(--text-muted)}
+    .intro-box strong{color:var(--text-main)}
+    .intro-box strong.curso{color:var(--accent)}
+
+    /* Grid Stats */
+    .grid-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:2rem}
+    .stat-card{background:var(--card-bg);padding:1.5rem;border-radius:8px;border:1px solid var(--border-color);border-top:4px solid var(--primary);text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.03);position:relative}
+    .stat-value{font-size:2.2rem;color:var(--primary);line-height:1;margin-bottom:.5rem}
+    .stat-label{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+    .stat-hint{font-size:.7rem;color:#999;margin-top:.4rem;font-style:italic}
+
+    /* Layouts */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2rem}
+    
+    /* Cards */
+    .card{background:var(--card-bg);padding:2rem;border-radius:8px;border:1px solid var(--border-color);box-shadow:0 4px 12px rgba(0,0,0,.03)}
+    .card h3{font-size:1.4rem;border-bottom:2px solid var(--primary);padding-bottom:.5rem;margin-bottom:.5rem}
+    .card .subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:1.5rem}
+
+    /* Preguntas y Formulario */
+    .pregunta{margin-bottom:1.5rem}
+    .pregunta p{font-weight:600;font-size:.9rem;margin-bottom:.6rem;color:var(--text-main)}
+    .opciones{display:flex;flex-direction:column;gap:.4rem}
+    .opcion{display:flex;align-items:center;background:#FAF8F5;padding:.5rem .8rem;border-radius:4px;border:1px solid var(--border-color);cursor:pointer;transition:all .2s}
+    .opcion:hover{background:#F0EAE1;border-color:var(--primary-light)}
+    .opcion input[type=radio]{margin-right:.6rem;accent-color:var(--primary);width:16px;height:16px;cursor:pointer}
+    .opcion label{cursor:pointer;font-size:.85rem;flex:1;color:var(--text-main)}
+    
+    /* Barra de Progreso */
+    .progress-line{height:8px;background:#E8E0D5;border-radius:4px;overflow:hidden;margin-bottom:1rem}
+    .progress-line > div{height:100%;width:0;background:var(--accent);transition:width .3s ease}
+    .progress-line.complete > div{background:var(--primary)}
+
+    /* Botones */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:var(--primary);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:4px;font-weight:600;font-size:.9rem;cursor:pointer;transition:background .2s;margin-top:.5rem;width:100%}
+    .btn:hover:not(:disabled){background:#5A1E37}
     .btn:disabled{opacity:.6;cursor:not-allowed}
-    .btn-secondary{background:linear-gradient(135deg,#f0b429,#ffd966);color:#0b3b5c;box-shadow:0 4px 15px rgba(240,180,41,.4)}
-    .btn-secondary:hover:not(:disabled){background:linear-gradient(135deg,#ffd966,#f0b429)}
-    .btn-danger{background:linear-gradient(135deg,#c0392b,#e74c3c)}
-    .btn-danger:hover:not(:disabled){background:linear-gradient(135deg,#e74c3c,#ff6b6b)}
-    .btn-sm{padding:.4rem .9rem;font-size:.8rem}
-    .btn-group{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+    .btn-secondary{background:var(--accent)}
+    .btn-secondary:hover:not(:disabled){background:#A62A38}
+    .btn-danger{background:var(--text-main);width:auto}
+    .btn-sm{padding:.5rem 1rem;font-size:.8rem;width:auto}
+    .btn-group{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+
+    /* Textarea y Opiniones */
+    textarea{width:100%;padding:.8rem;border:1px solid var(--border-color);border-radius:4px;font-size:.9rem;resize:vertical;min-height:80px;font-family:'Inter',sans-serif;background:#FAF8F5;color:var(--text-main)}
+    textarea:focus{outline:none;border-color:var(--primary)}
+    .char-count{font-size:.75rem;color:var(--text-muted);text-align:right;margin-top:.3rem}
+    .opiniones-list{margin-top:1.5rem;max-height:250px;overflow-y:auto;padding-right:.5rem}
+    .opinion-item{background:#FAF8F5;border-left:3px solid var(--accent);padding:.8rem 1rem;margin-bottom:.8rem;font-size:.85rem;color:var(--text-main)}
+    .opinion-item .fecha{display:block;font-size:.7rem;color:var(--text-muted);margin-top:.4rem}
+    
+    .habilidades-tag{display:inline-block;background:#EBE4D8;color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.75rem;margin:.2rem;font-weight:600}
+
+    /* Tabla */
+    .table-wrap{overflow-x:auto;max-height:400px;margin-top:1rem}
+    table{width:100%;border-collapse:collapse;font-size:.85rem;text-align:left}
+    th,td{padding:.8rem;border-bottom:1px solid var(--border-color)}
+    th{background:var(--primary);color:#fff;font-family:'Inter',sans-serif;font-weight:600;position:sticky;top:0;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px}
+    tr:hover{background:#FAF8F5}
+    .top-option{color:var(--accent);font-weight:700}
+
+    /* Gráficos */
+    .chart-container{position:relative;height:250px;width:100%}
+    
+    /* Logs de Deploy */
+    .config-input{width:100%;padding:.7rem;border:1px solid var(--border-color);border-radius:4px;font-size:.9rem;margin-bottom:.8rem;background:#FAF8F5}
+    .config-input:focus{outline:none;border-color:var(--primary)}
+    .config-log{font-family:monospace;font-size:.8rem;background:#2A1A1F;color:#fff;padding:1rem;border-radius:4px;margin-top:1rem;max-height:200px;overflow-y:auto;display:none}
+    .config-log.visible{display:block}
+    .config-log .step.ok{color:#4CAF50}
+    .config-log .step.err{color:#F44336}
+    .config-log .step.info{color:#64B5F6}
+    .config-success{background:#E8F5E9;border:1px solid #A5D6A7;color:#2E7D32;padding:1rem;border-radius:4px;margin-top:1rem;display:none}
+    .config-success.visible{display:block}
+    .config-success a{color:var(--primary);font-weight:bold;word-break:break-all}
+
+    /* Utilidades */
+    .nota{font-size:.75rem;color:#999;margin-top:1rem;font-style:italic}
     .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
+    
+    /* Toasts */
+    .toast-container{position:fixed;top:1rem;right:1rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;max-width:340px}
+    .toast{background:var(--text-main);color:#fff;padding:.8rem 1.2rem;border-radius:4px;font-size:.85rem;box-shadow:0 4px 12px rgba(0,0,0,.15);border-left:4px solid var(--primary-light);animation:toastIn .3s ease}
+    .toast.toast-ok{border-left-color:#4CAF50}
+    .toast.toast-err{border-left-color:#F44336}
+    @keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 
-    .opiniones-list{margin-top:.9rem;max-height:230px;overflow-y:auto;padding-right:.3rem}
-    .opiniones-list::-webkit-scrollbar{width:6px}
-    .opiniones-list::-webkit-scrollbar-thumb{background:rgba(79,195,247,.4);border-radius:3px}
-    .opinion-item{background:rgba(255,255,255,.05);border-left:3px solid #f0b429;padding:.55rem .75rem;border-radius:0 8px 8px 0;margin-bottom:.55rem;font-size:.83rem;color:#d0e2f2;word-break:break-word}
-    .opinion-item .fecha{display:block;font-size:.7rem;color:#7a9bb5;margin-top:.2rem}
-    textarea{width:100%;padding:.7rem;border:1px solid rgba(255,255,255,.2);border-radius:8px;font-size:.85rem;resize:vertical;min-height:70px;font-family:inherit;background:rgba(0,0,0,.2);color:#e8eef5}
-    textarea:focus{outline:none;border-color:#4fc3f7;box-shadow:0 0 0 3px rgba(79,195,247,.2)}
-    .char-count{font-size:.7rem;color:#7a9bb5;text-align:right;margin-top:.2rem}
-    .char-count.warn{color:#f0b429}
-    .char-count.danger{color:#e74c3c}
-    .nota{font-size:.73rem;color:#7a9bb5;margin-top:.5rem;font-style:italic}
-    .habilidades-tag{display:inline-block;background:rgba(79,195,247,.15);color:#8fd4ff;padding:.22rem .65rem;border-radius:20px;font-size:.73rem;margin:.15rem;border:1px solid rgba(79,195,247,.3)}
-
-    table{width:100%;border-collapse:collapse;margin-top:.8rem;font-size:.83rem}
-    th,td{padding:.55rem;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
-    th{background:rgba(79,195,247,.1);color:#4fc3f7;font-weight:600;position:sticky;top:0;z-index:1}
-    td{color:#c0d8ec}
-    tr:hover{background:rgba(255,255,255,.03)}
-    .table-wrap{overflow-x:auto;max-height:400px}
-    .top-option{color:#f0b429;font-weight:700}
-
-    .chart-container{position:relative;height:210px;width:100%}
-    .config-input{width:100%;padding:.55rem .7rem;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.2);color:#e8eef5;font-size:.85rem;margin-bottom:.5rem;font-family:inherit}
-    .config-input:focus{outline:none;border-color:#4fc3f7;box-shadow:0 0 0 3px rgba(79,195,247,.2)}
-    .config-log{font-family:'Consolas','Monaco',monospace;font-size:.78rem;background:rgba(0,0,0,.35);border-radius:8px;padding:.7rem;margin-top:.6rem;max-height:200px;overflow-y:auto;display:none;border:1px solid rgba(255,255,255,.1)}
-    .config-log.visible{display:block}
-    .config-log .step{color:#c0d8ec;padding:.1rem 0}
-    .config-log .step.ok{color:#2ecc71}
-    .config-log .step.err{color:#e74c3c}
-    .config-log .step.info{color:#4fc3f7}
-    .config-success{background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.4);border-radius:8px;padding:.8rem;margin-top:.7rem;color:#2ecc71;display:none}
-    .config-success.visible{display:block}
-    .config-success a{color:#4fc3f7;font-weight:700;word-break:break-all}
-
-    .toast-container{position:fixed;top:1rem;right:1rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;max-width:340px;pointer-events:none}
-    .toast{background:rgba(20,30,50,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-left:4px solid #4fc3f7;color:#e8eef5;padding:.7rem 1rem;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.5);font-size:.85rem;animation:toastIn .3s ease;pointer-events:auto}
-    .toast.toast-ok{border-left-color:#2ecc71}
-    .toast.toast-err{border-left-color:#e74c3c}
-    .toast.toast-info{border-left-color:#4fc3f7}
-    .toast.toast-out{animation:toastOut .3s ease forwards}
-    @keyframes toastIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
-    @keyframes toastOut{to{opacity:0;transform:translateX(30px)}}
-
-    .reveal-btn{background:transparent;border:none;color:#4fc3f7;cursor:pointer;font-size:.75rem;padding:.2rem .4rem;margin-left:.4rem}
-    footer{text-align:center;padding:1.4rem 1rem;font-size:.75rem;color:#7a9bb5;border-top:1px solid rgba(255,255,255,.1);margin-top:2rem}
-    @media(max-width:900px){.grid-stats{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:1fr 1fr}}
-    @media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr}header h1{font-size:1.35rem}.grid-stats{grid-template-columns:repeat(2,1fr)}.toast-container{left:1rem;right:1rem;max-width:none}}
+    @media(max-width:900px){
+      .grid-stats{grid-template-columns:repeat(2,1fr)}
+      .grid-2,.grid-3{grid-template-columns:1fr}
+      header h1{font-size:1.8rem}
+    }
   </style>
 </head>
 <body>
 
-<div id="particles-js"><canvas class="particles-js-canvas-el" width="720" height="1359" style="width: 100%; height: 100%;"></canvas></div>
-<div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+<div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
 <header>
-  <h1>Panel de Diagnóstico y Seguimiento</h1>
+  <h1>Diagnóstico y Seguimiento</h1>
   <h2>Física — 10mo Grado · IPU “Roberto Leonardo Roque Núñez”</h2>
   <div class="badge">Curso 2026 – 2027</div>
 </header>
@@ -125,21 +150,21 @@
 <div class="container">
 
   <div class="intro-box">
-    <p><strong>Objetivo del curso <span class="curso">2026 – 2027</span>:</strong> Medir de forma anónima la comprensión de la explicación del profesor, la resolución de ejercicios, el dominio de habilidades previas y otros indicadores de actualidad (motivación, contextualización, materiales, retroalimentación y uso de tecnología).</p>
-    <p><strong>Privacidad:</strong> Sin datos personales. Los votos y opiniones se almacenan localmente en este dispositivo y se visualizan en gráficas dinámicas y tablas de seguimiento. Esta edición inicia un ciclo nuevo de datos para el año escolar <strong>2026 – 2027</strong>.</p>
+    <p><strong>Objetivo del curso <span class="curso">2026 – 2027</span>:</strong> Medir de forma anónima la comprensión de la explicación del profesor, la resolución de ejercicios, el dominio de habilidades previas y otros indicadores de actualidad.</p>
+    <p><strong>Privacidad:</strong> Sin datos personales. Los votos y opiniones se almacenan localmente en este dispositivo y se visualizan en gráficas dinámicas.</p>
   </div>
 
-  <div class="grid-stats" id="statsCards">
-    <div class="stat-card"><div class="stat-value" id="statVotos">0</div><div class="stat-label">Total de votos</div><div class="stat-hint" id="statVotosHint">Sin registros aún</div></div>
-    <div class="stat-card"><div class="stat-value" id="statOpiniones">0</div><div class="stat-label">Opiniones</div><div class="stat-hint" id="statOpinionesHint">Sin registros aún</div></div>
-    <div class="stat-card"><div class="stat-value" id="statSatisfaccion">—</div><div class="stat-label">Comprensión de explicación</div><div class="stat-hint">Basado en P1</div></div>
-    <div class="stat-card"><div class="stat-value" id="statHabilidades">—</div><div class="stat-label">Dominio de habilidades</div><div class="stat-hint">Basado en P3</div></div>
+  <div class="grid-stats">
+    <div class="stat-card"><div class="stat-value" id="statVotos">0</div><div class="stat-label">Total de votos</div><div class="stat-hint" id="statVotosHint">Sin registros</div></div>
+    <div class="stat-card"><div class="stat-value" id="statOpiniones">0</div><div class="stat-label">Opiniones</div><div class="stat-hint" id="statOpinionesHint">Sin registros</div></div>
+    <div class="stat-card"><div class="stat-value" id="statSatisfaccion">—</div><div class="stat-label">Comprensión</div><div class="stat-hint">Basado en P1</div></div>
+    <div class="stat-card"><div class="stat-value" id="statHabilidades">—</div><div class="stat-label">Habilidades Previas</div><div class="stat-hint">Basado en P3</div></div>
   </div>
 
   <div class="grid-2">
     <div class="card">
-      <h3>📋 Medidores de Opinión</h3>
-      <p class="subtitle" id="progressText" aria-live="polite">Progreso: 0 / 10 preguntas respondidas</p>
+      <h3>Medidores de Opinión</h3>
+      <p class="subtitle" id="progressText">Progreso: 0 / 10 preguntas respondidas</p>
       <div class="progress-line" id="progressLine"><div id="progressBar" style="width: 0%;"></div></div>
       <form id="formVotacion" novalidate="" autocomplete="off">
         <div id="preguntasContainer"></div>
@@ -148,16 +173,18 @@
     </div>
 
     <div class="card">
-      <h3>💬 Opiniones Abiertas</h3>
+      <h3>Opiniones Abiertas</h3>
       <p class="subtitle">Comparte sugerencias o dificultades específicas (sin datos personales).</p>
       <form id="formOpinion" novalidate="" autocomplete="off">
-        <textarea id="textoOpinion" placeholder="Ejemplo: Me gustaría más tiempo para practicar ejercicios de cinemática..." maxlength="300" required=""></textarea>
+        <textarea id="textoOpinion" placeholder="Ejemplo: Me gustaría más tiempo para practicar ejercicios..." maxlength="300" required="" style="height: 310px;"></textarea>
         <div class="char-count"><span id="charCount">0</span> / 300</div>
         <button type="submit" class="btn btn-secondary" id="btnEnviarOpinion">Publicar opinión</button>
       </form>
       <div class="opiniones-list" id="listaOpiniones" aria-live="polite"></div>
-      <hr style="margin:1.1rem 0;border:0;border-top:1px solid rgba(255,255,255,.1);">
-      <h3>🧠 Habilidades Previas</h3>
+      
+      <hr style="margin:1.5rem 0;border:0;border-top:1px solid var(--border-color);">
+      
+      <h3>Habilidades Previas</h3>
       <p class="subtitle">Base necesaria de grados anteriores.</p>
       <div>
         <span class="habilidades-tag">Conversión de unidades</span>
@@ -170,31 +197,44 @@
     </div>
   </div>
 
+  <!-- Gráficos estilo Infografía -->
   <div class="grid-3" id="chartsSection">
-    <div class="card"><h3>📊 Comprensión y Ejercicios</h3><div class="chart-container"><canvas id="chartComprension" width="579" height="393" style="display: block; box-sizing: border-box; height: 210px; width: 309px;"></canvas></div></div>
-    <div class="card"><h3>🧩 Habilidades Previas</h3><div class="chart-container"><canvas id="chartHabilidades" width="579" height="393" style="display: block; box-sizing: border-box; height: 210px; width: 309px;"></canvas></div></div>
-    <div class="card"><h3>⚡ Causa Principal</h3><div class="chart-container"><canvas id="chartCausa" width="579" height="393" style="display: block; box-sizing: border-box; height: 210px; width: 309px;"></canvas></div></div>
+    <div class="card">
+      <h3>Comprensión y Ejercicios</h3>
+      <p class="subtitle">Comparativa P1 y P2</p>
+      <div class="chart-container"><canvas id="chartComprension" width="562" height="468" style="display: block; box-sizing: border-box; height: 250px; width: 300px;"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>Habilidades Previas</h3>
+      <p class="subtitle">Dominio (P3)</p>
+      <div class="chart-container"><canvas id="chartHabilidades" width="562" height="468" style="display: block; box-sizing: border-box; height: 250px; width: 300px;"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>Causa Principal</h3>
+      <p class="subtitle">Dificultades (P4)</p>
+      <div class="chart-container"><canvas id="chartCausa" width="562" height="468" style="display: block; box-sizing: border-box; height: 250px; width: 300px;"></canvas></div>
+    </div>
   </div>
 
-  <div class="card" style="margin-top:1.2rem">
-    <h3>📑 Tabla de Seguimiento</h3>
-    <p class="subtitle">Desglose detallado por pregunta, opción, conteo y porcentaje — Curso 2026–2027. La opción más votada aparece resaltada.</p>
+  <div class="card" style="margin-top:2rem">
+    <h3>Tabla de Seguimiento</h3>
+    <p class="subtitle">Desglose detallado por pregunta y opción. La opción más votada está resaltada.</p>
     <div class="table-wrap">
       <table id="tablaResultados">
         <thead><tr><th>Pregunta</th><th>Opción</th><th>Votos</th><th>%</th></tr></thead>
         <tbody id="tablaBody"></tbody>
       </table>
     </div>
-    <p class="nota" id="totalVotosNota">Total de votos registrados (2026–2027): 0</p>
+    <p class="nota" id="totalVotosNota">Total de votos registrados: 0</p>
   </div>
 
-  <div class="card" style="margin-top:1.2rem">
-    <h3>💾 Gestión de Datos</h3>
+  <div class="card" style="margin-top:2rem">
+    <h3>Gestión de Datos</h3>
     <p class="subtitle">Exporta, importa o reinicia los datos almacenados en este dispositivo.</p>
     <div class="btn-group">
       <button class="btn btn-sm" id="btnExportar" type="button">⬇ Exportar JSON</button>
       <button class="btn btn-sm" id="btnImportar" type="button">⬆ Importar JSON</button>
-      <button class="btn btn-danger btn-sm" id="btnReset" type="button">🗑 Borrar todos los datos</button>
+      <button class="btn btn-danger btn-sm" id="btnReset" type="button">🗑 Borrar datos</button>
     </div>
     <input type="file" id="inputImportar" accept="application/json" hidden="">
   </div>
@@ -203,101 +243,94 @@
 
 </div>
 
-<footer>
+<footer style="text-align:center;padding:2rem;font-size:.8rem;color:var(--text-muted);border-top:1px solid var(--border-color)">
   <p>© 2026 IPU “Roberto Leonardo Roque Núñez” · Departamento de Física</p>
-  <p>Curso 2026–2027 · Panel anónimo con fines pedagógicos · Datos almacenados localmente en tu navegador.</p>
+  <p>Panel anónimo con fines pedagógicos.</p>
 </footer>
 
 <!-- ============================================================
-     SCRIPT DE DESPLIEGUE (se elimina automáticamente del HTML publicado)
+     SCRIPT DE DESPLIEGUE
      ============================================================ -->
 
 
 <!-- ============================================================
-     APLICACIÓN PRINCIPAL
+     APLICACIÓN PRINCIPAL Y LÓGICA DE DATOS
      ============================================================ -->
 <script>
 /* ---------- UI ---------- */
 const UI = {
   toast(msg, type = 'info', ms = 3500) {
     const c = document.getElementById('toastContainer');
-    if (!c) return;
     const el = document.createElement('div');
     el.className = `toast toast-${type}`;
     el.textContent = msg;
     c.appendChild(el);
-    setTimeout(() => {
-      el.classList.add('toast-out');
-      setTimeout(() => el.remove(), 300);
-    }, ms);
+    setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, ms);
   },
-  escapeHTML(s) {
-    return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-  },
-  formatDate(iso) {
-    try {
-      return new Date(iso).toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-    } catch { return iso; }
-  },
+  escapeHTML(s) { return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])); },
+  formatDate(iso) { try { return new Date(iso).toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }); } catch { return iso; } },
   formatNumber(n) { return new Intl.NumberFormat('es-ES').format(n); },
-  formatPercent(ratio) {
-    try {
-      return new Intl.NumberFormat('es-ES', {
-        style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1
-      }).format(ratio);
-    } catch { return (ratio * 100).toFixed(1).replace('.', ',') + ' %'; }
-  }
+  formatPercent(ratio) { return new Intl.NumberFormat('es-ES', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(ratio); }
 };
 
-/* ---------- Store (v6 - Curso 2026-2027) ---------- */
+/* ---------- Store ---------- */
 const Store = {
-  K_VOTOS: 'fisica10_panel_votos_2026_v6',
-  K_OPINIONES: 'fisica10_panel_opiniones_2026_v6',
-  K_DRAFT: 'fisica10_panel_draft_2026_v6',
+  K_VOTOS: 'fisica10_votos_v7',
+  K_OPINIONES: 'fisica10_opiniones_v7',
+  K_DRAFT: 'fisica10_draft_v7',
   getVotos() { try { return JSON.parse(localStorage.getItem(this.K_VOTOS) || '{}'); } catch { return {}; } },
   setVotos(v) { localStorage.setItem(this.K_VOTOS, JSON.stringify(v)); },
   getOpiniones() { try { return JSON.parse(localStorage.getItem(this.K_OPINIONES) || '[]'); } catch { return []; } },
   setOpiniones(o) { localStorage.setItem(this.K_OPINIONES, JSON.stringify(o)); },
   getDraft() { return localStorage.getItem(this.K_DRAFT) || ''; },
   setDraft(t) { localStorage.setItem(this.K_DRAFT, t); },
-  reset() {
-    localStorage.removeItem(this.K_VOTOS);
-    localStorage.removeItem(this.K_OPINIONES);
-    localStorage.removeItem(this.K_DRAFT);
-  }
+  reset() { localStorage.removeItem(this.K_VOTOS); localStorage.removeItem(this.K_OPINIONES); localStorage.removeItem(this.K_DRAFT); }
 };
 
 /* ---------- Preguntas ---------- */
 const PREGUNTAS = [
   { id: 'p1', texto: '¿Entiendes la explicación del profesor durante las clases de Física?', opciones: ['Siempre', 'Casi siempre', 'A veces', 'Casi nunca', 'Nunca'] },
   { id: 'p2', texto: '¿Puedes resolver los ejercicios de Física de forma independiente?', opciones: ['Sin dificultad', 'Con poca ayuda', 'Con mucha ayuda', 'No puedo'] },
-  { id: 'p3', texto: '¿Dominas las habilidades básicas de grados anteriores (conversión, despeje, gráficas)?', opciones: ['Totalmente', 'Parcialmente', 'No', 'No sé'] },
+  { id: 'p3', texto: '¿Dominas las habilidades básicas de grados anteriores?', opciones: ['Totalmente', 'Parcialmente', 'No', 'No sé'] },
   { id: 'p4', texto: '¿Cuál es la principal causa de tus dificultades en Física?', opciones: ['Explicación del profesor', 'Falta de base previa', 'Pocos ejercicios', 'Falta de estudio', 'Otra'] },
-  { id: 'p5', texto: '¿Con qué frecuencia el profesor utiliza ejemplos prácticos o contextualizados?', opciones: ['Siempre', 'Casi siempre', 'A veces', 'Casi nunca', 'Nunca'] },
+  { id: 'p5', texto: '¿Con qué frecuencia el profesor utiliza ejemplos prácticos?', opciones: ['Siempre', 'Casi siempre', 'A veces', 'Casi nunca', 'Nunca'] },
   { id: 'p6', texto: '¿Los objetivos de la clase son claros desde el inicio?', opciones: ['Siempre', 'Casi siempre', 'A veces', 'Casi nunca', 'Nunca'] },
-  { id: 'p7', texto: '¿Dispones de materiales de apoyo suficientes (libro, guías, ejercicios)?', opciones: ['Sí, abundantes', 'Suficientes', 'Escasos', 'No tengo'] },
+  { id: 'p7', texto: '¿Dispones de materiales de apoyo suficientes?', opciones: ['Sí, abundantes', 'Suficientes', 'Escasos', 'No tengo'] },
   { id: 'p8', texto: '¿Recibes retroalimentación oportuna sobre tus errores?', opciones: ['Siempre', 'Casi siempre', 'A veces', 'Casi nunca', 'Nunca'] },
   { id: 'p9', texto: '¿Qué tan motivado/a te sientes hacia el aprendizaje de la Física?', opciones: ['Muy motivado/a', 'Algo motivado/a', 'Poco motivado/a', 'Nada motivado/a'] },
-  { id: 'p10', texto: '¿Utilizas dispositivos tecnológicos (móvil, PC) para estudiar o practicar Física?', opciones: ['Frecuentemente', 'Ocasionalmente', 'Rara vez', 'Nunca'] }
+  { id: 'p10', texto: '¿Utilizas dispositivos tecnológicos para estudiar o practicar?', opciones: ['Frecuentemente', 'Ocasionalmente', 'Rara vez', 'Nunca'] }
 ];
 
-/* ---------- Plugin Chart.js: "Sin datos aún" ---------- */
-const emptyStatePlugin = {
-  id: 'emptyState',
-  afterDraw(chart) {
-    const allData = chart.data.datasets.flatMap(ds => ds.data || []);
-    if (allData.length === 0 || allData.every(v => !v || Number(v) === 0)) {
-      const { ctx, chartArea } = chart;
-      if (!chartArea) return;
-      const { top, bottom, left, right } = chartArea;
-      ctx.save();
-      ctx.fillStyle = 'rgba(160,184,208,.65)';
-      ctx.font = '500 13px "Segoe UI", Roboto, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('Sin datos aún', (left + right) / 2, (top + bottom) / 2);
-      ctx.restore();
-    }
+/* ---------- Plugin para dibujar porcentajes dentro de los gráficos ---------- */
+const dataLabelsPlugin = {
+  id: 'dataLabels',
+  afterDatasetsDraw(chart) {
+    const { ctx } = chart;
+    ctx.save();
+    ctx.font = 'bold 12px "Inter", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#fff'; 
+    ctx.shadowColor = 'rgba(0,0,0,0.5)';
+    ctx.shadowBlur = 4;
+
+    chart.data.datasets.forEach((dataset, i) => {
+      const meta = chart.getDatasetMeta(i);
+      if (meta.hidden) return;
+      meta.data.forEach((element, index) => {
+        const value = dataset.data[index];
+        if (value > 0) {
+          let text = value;
+          if (chart.config.type === 'doughnut' || chart.config.type === 'pie') {
+            const total = dataset.data.reduce((a, b) => a + b, 0);
+            text = ((value / total) * 100).toFixed(0) + '%';
+          }
+          const position = element.tooltipPosition();
+          ctx.fillText(text, position.x, position.y);
+        }
+      });
+    });
+    ctx.restore();
   }
 };
 
@@ -320,22 +353,14 @@ const App = {
   },
 
   renderStats() {
-    const votos = Store.getVotos();
-    const opiniones = Store.getOpiniones();
-
+    const votos = Store.getVotos(), opiniones = Store.getOpiniones();
     let totalVotos = 0;
-    for (const p of PREGUNTAS) {
-      const c = votos[p.id] || {};
-      totalVotos += Object.values(c).reduce((a, b) => a + b, 0);
-    }
+    for (const p of PREGUNTAS) totalVotos += Object.values(votos[p.id] || {}).reduce((a, b) => a + b, 0);
 
-    const pesosP1 = { 'Siempre': 5, 'Casi siempre': 4, 'A veces': 3, 'Casi nunca': 2, 'Nunca': 1 };
     const p1 = votos.p1 || {};
-    let sumP = 0, totP = 0;
-    for (const [k, v] of Object.entries(p1)) {
-      if (pesosP1[k]) { sumP += pesosP1[k] * v; totP += v; }
-    }
-    const satisfaccion = totP > 0 ? Math.round((sumP / (totP * 5)) * 100) : null;
+    const sumP1 = (p1['Siempre']||0)*5 + (p1['Casi siempre']||0)*4 + (p1['A veces']||0)*3 + (p1['Casi nunca']||0)*2 + (p1['Nunca']||0)*1;
+    const totP1 = Object.values(p1).reduce((a, b) => a + b, 0);
+    const satisfaccion = totP1 > 0 ? Math.round((sumP1 / (totP1 * 5)) * 100) : null;
 
     const p3 = votos.p3 || {};
     const totP3 = Object.values(p3).reduce((a, b) => a + b, 0);
@@ -346,100 +371,104 @@ const App = {
     document.getElementById('statOpiniones').textContent = UI.formatNumber(opiniones.length);
     document.getElementById('statSatisfaccion').textContent = satisfaccion !== null ? `${satisfaccion}%` : '—';
     document.getElementById('statHabilidades').textContent = dominio !== null ? `${dominio}%` : '—';
-
-    document.getElementById('statVotosHint').textContent =
-      totalVotos > 0 ? `${PREGUNTAS.length} preguntas evaluadas` : 'Sin registros aún';
-    document.getElementById('statOpinionesHint').textContent =
-      opiniones.length > 0 ? `Última: ${UI.formatDate(opiniones[opiniones.length - 1].fecha)}` : 'Sin registros aún';
+    
+    document.getElementById('statVotosHint').textContent = totalVotos > 0 ? `${PREGUNTAS.length} preguntas` : 'Sin registros';
+    document.getElementById('statOpinionesHint').textContent = opiniones.length > 0 ? 'Ver lista abajo' : 'Sin registros';
   },
 
   initCharts() {
     if (typeof Chart === 'undefined') {
       this.chartsAvailable = false;
-      UI.toast('No se pudieron cargar las gráficas (CDN). Los datos siguen disponibles en la tabla.', 'err', 6000);
+      UI.toast('No se cargaron las gráficas.', 'err');
       return;
     }
     this.chartsAvailable = true;
 
-    const baseOpts = {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { labels: { color: '#a0b8d0', font: { size: 10 } } },
-        emptyState: {}
-      },
-      scales: {
-        y: { beginAtZero: true, ticks: { color: '#a0b8d0', precision: 0 }, grid: { color: 'rgba(255,255,255,.05)' } },
-        x: { ticks: { color: '#a0b8d0', maxRotation: 45, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,.05)' } }
-      }
-    };
+    // Colores basados en la imagen de referencia
+    const colors = ['#7A2E4D', '#B26B8E', '#C93C4C', '#E6D3D8', '#D8CEC2'];
+    
+    // Configuración global para Chart.js
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.color = '#2A1A1F';
 
+    // 1. Gráfico de Barras Horizontales (Comprensión)
     this.charts.comprension = new Chart(document.getElementById('chartComprension'), {
       type: 'bar',
       data: { labels: [], datasets: [] },
-      options: baseOpts,
-      plugins: [emptyStatePlugin]
+      options: {
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, dataLabels: {} },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: '#5C4B51' } },
+          y: { grid: { display: false }, ticks: { color: '#2A1A1F', font: { weight: '600' } } }
+        }
+      },
+      plugins: [dataLabelsPlugin]
     });
 
+    // 2. Gráfico de Dona (Habilidades)
     this.charts.habilidades = new Chart(document.getElementById('chartHabilidades'), {
       type: 'doughnut',
-      data: { labels: [], datasets: [{ data: [], backgroundColor: ['#4fc3f7', '#f0b429', '#2ecc71', '#e74c3c'], borderColor: 'rgba(10,15,30,.8)', borderWidth: 2 }] },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#a0b8d0', font: { size: 10 } } } } },
-      plugins: [emptyStatePlugin]
+      data: { labels: [], datasets: [{ data: [], backgroundColor: colors, borderWidth: 2, borderColor: '#fff' }] },
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout: '55%',
+        plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 20 } }, dataLabels: {} }
+      },
+      plugins: [dataLabelsPlugin]
     });
 
+    // 3. Gráfico de Barras Horizontales (Causa) - Cambiado de Pie a Bar para coincidir con el estilo de la imagen
     this.charts.causa = new Chart(document.getElementById('chartCausa'), {
-      type: 'pie',
-      data: { labels: [], datasets: [{ data: [], backgroundColor: ['#4fc3f7', '#f0b429', '#2ecc71', '#e74c3c', '#9b59b6'], borderColor: 'rgba(10,15,30,.8)', borderWidth: 2 }] },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#a0b8d0', font: { size: 10 } } } } },
-      plugins: [emptyStatePlugin]
+      type: 'bar',
+      data: { labels: [], datasets: [{ data: [], backgroundColor: '#C93C4C', borderRadius: 4 }] },
+      options: {
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, dataLabels: {} },
+        scales: {
+          x: { grid: { display: false }, display: false },
+          y: { grid: { display: false }, ticks: { color: '#2A1A1F', font: { size: 11 } } }
+        }
+      },
+      plugins: [dataLabelsPlugin]
     });
   },
 
   renderCharts() {
-    if (!this.chartsAvailable || !this.charts.comprension) return;
+    if (!this.chartsAvailable) return;
     const votos = Store.getVotos();
 
-    const labelsCmp = ['Siempre / Sin dificultad', 'Casi siempre / Poca ayuda', 'A veces / Mucha ayuda', 'Casi nunca', 'Nunca / No puedo'];
-    const dataComp = [
-      (votos.p1 && votos.p1['Siempre']) || 0,
-      (votos.p1 && votos.p1['Casi siempre']) || 0,
-      (votos.p1 && votos.p1['A veces']) || 0,
-      (votos.p1 && votos.p1['Casi nunca']) || 0,
-      (votos.p1 && votos.p1['Nunca']) || 0
-    ];
-    const dataRes = [
-      (votos.p2 && votos.p2['Sin dificultad']) || 0,
-      (votos.p2 && votos.p2['Con poca ayuda']) || 0,
-      (votos.p2 && votos.p2['Con mucha ayuda']) || 0,
-      0,
-      (votos.p2 && votos.p2['No puedo']) || 0
-    ];
-
+    // Actualizar Comprensión (P1 y P2)
+    const labelsCmp = ['Siempre', 'Casi siempre', 'A veces', 'Casi nunca', 'Nunca'];
+    const dataComp = labelsCmp.map(l => (votos.p1 && votos.p1[l]) || 0);
+    const dataRes = ['Sin dificultad', 'Con poca ayuda', 'Con mucha ayuda', 'No puedo'].map(l => (votos.p2 && votos.p2[l]) || 0);
+    
     this.charts.comprension.data.labels = labelsCmp;
     this.charts.comprension.data.datasets = [
-      { label: 'Comprensión (P1)', data: dataComp, backgroundColor: 'rgba(79,195,247,.7)', borderColor: '#4fc3f7', borderWidth: 1 },
-      { label: 'Resolución (P2)', data: dataRes, backgroundColor: 'rgba(240,180,41,.7)', borderColor: '#f0b429', borderWidth: 1 }
+      { label: 'Comprensión', data: dataComp, backgroundColor: '#7A2E4D', borderRadius: 4 },
+      { label: 'Resolución', data: [dataRes[0], dataRes[1], dataRes[2], 0, dataRes[3]], backgroundColor: '#C93C4C', borderRadius: 4 }
     ];
     this.charts.comprension.update();
 
+    // Actualizar Habilidades (P3)
     const labelsP3 = ['Totalmente', 'Parcialmente', 'No', 'No sé'];
     this.charts.habilidades.data.labels = labelsP3;
     this.charts.habilidades.data.datasets[0].data = labelsP3.map(l => (votos.p3 && votos.p3[l]) || 0);
     this.charts.habilidades.update();
 
-    const labelsP4 = ['Explicación del profesor', 'Falta de base previa', 'Pocos ejercicios', 'Falta de estudio', 'Otra'];
+    // Actualizar Causa (P4)
+    const labelsP4 = ['Explicación', 'Falta de base', 'Pocos ejercicios', 'Falta de estudio', 'Otra'];
+    const dataP4 = ['Explicación del profesor', 'Falta de base previa', 'Pocos ejercicios', 'Falta de estudio', 'Otra'].map(l => (votos.p4 && votos.p4[l]) || 0);
     this.charts.causa.data.labels = labelsP4;
-    this.charts.causa.data.datasets[0].data = labelsP4.map(l => (votos.p4 && votos.p4[l]) || 0);
+    this.charts.causa.data.datasets[0].data = dataP4;
     this.charts.causa.update();
   },
 
   renderTable() {
-    const votos = Store.getVotos();
-    const tbody = document.getElementById('tablaBody');
+    const votos = Store.getVotos(), tbody = document.getElementById('tablaBody');
     tbody.innerHTML = '';
-    let totalGeneral = 0;
-    let algunaFila = false;
+    let totalGeneral = 0, algunaFila = false;
 
     PREGUNTAS.forEach(p => {
       const c = votos[p.id] || {};
@@ -448,12 +477,8 @@ const App = {
       if (totalPreg === 0) return;
       algunaFila = true;
 
-      // Determinar la opción más votada para resaltarla
       let topOption = null, topValue = -1;
-      p.opciones.forEach(op => {
-        const v = c[op] || 0;
-        if (v > topValue) { topValue = v; topOption = op; }
-      });
+      p.opciones.forEach(op => { const v = c[op] || 0; if (v > topValue) { topValue = v; topOption = op; } });
 
       p.opciones.forEach((op, idx) => {
         const v = c[op] || 0;
@@ -462,100 +487,59 @@ const App = {
 
         if (idx === 0) {
           const tdP = document.createElement('td');
-          tdP.textContent = p.texto;
-          tdP.rowSpan = p.opciones.length;
-          tdP.style.fontWeight = '600';
-          tdP.style.color = '#4fc3f7';
+          tdP.textContent = p.texto; tdP.rowSpan = p.opciones.length; tdP.style.fontWeight = '600';
           tr.appendChild(tdP);
         }
 
-        const tdOp = document.createElement('td');
-        tdOp.textContent = op;
-        if (op === topOption && v > 0) tdOp.classList.add('top-option');
-
-        const tdV = document.createElement('td');
-        tdV.textContent = v;
-        if (op === topOption && v > 0) tdV.classList.add('top-option');
-
-        const tdPct = document.createElement('td');
-        tdPct.textContent = pct;
-        if (op === topOption && v > 0) tdPct.classList.add('top-option');
-
-        tr.appendChild(tdOp);
-        tr.appendChild(tdV);
-        tr.appendChild(tdPct);
+        tr.innerHTML += `<td class="${op === topOption && v > 0 ? 'top-option' : ''}">${UI.escapeHTML(op)}</td>
+                         <td class="${op === topOption && v > 0 ? 'top-option' : ''}">${v}</td>
+                         <td class="${op === topOption && v > 0 ? 'top-option' : ''}">${pct}</td>`;
         tbody.appendChild(tr);
       });
     });
 
-    if (!algunaFila) {
-      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:#7a9bb5;font-style:italic;padding:1.5rem">Aún no hay votos registrados en el curso 2026–2027.</td></tr>`;
-    }
-
-    document.getElementById('totalVotosNota').textContent =
-      `Total de votos registrados (2026–2027): ${UI.formatNumber(totalGeneral)}`;
+    if (!algunaFila) tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:#999;padding:2rem">Aún no hay votos registrados.</td></tr>`;
+    document.getElementById('totalVotosNota').textContent = `Total de votos registrados: ${UI.formatNumber(totalGeneral)}`;
   },
 
   renderOpiniones() {
-    const ops = Store.getOpiniones();
-    const cont = document.getElementById('listaOpiniones');
+    const ops = Store.getOpiniones(), cont = document.getElementById('listaOpiniones');
     if (!ops.length) {
-      cont.innerHTML = '<p style="color:#7a9bb5;font-style:italic;font-size:.83rem;">Aún no hay opiniones en el curso 2026–2027. ¡Comparte la tuya!</p>';
+      cont.innerHTML = '<p style="color:#999;font-size:.85rem">Aún no hay opiniones. ¡Comparte la tuya!</p>';
       return;
     }
-    cont.innerHTML = [...ops].reverse().map(o =>
-      `<div class="opinion-item">${UI.escapeHTML(o.texto)}<span class="fecha">${UI.formatDate(o.fecha)}</span></div>`
-    ).join('');
+    cont.innerHTML = [...ops].reverse().map(o => `<div class="opinion-item">${UI.escapeHTML(o.texto)}<span class="fecha">${UI.formatDate(o.fecha)}</span></div>`).join('');
   },
 
   renderProgress() {
     const form = document.getElementById('formVotacion');
     let answered = 0;
-    PREGUNTAS.forEach(p => {
-      if (form.querySelector(`input[name="${p.id}"]:checked`)) answered++;
-    });
+    PREGUNTAS.forEach(p => { if (form.querySelector(`input[name="${p.id}"]:checked`)) answered++; });
     const total = PREGUNTAS.length;
-    const pct = (answered / total) * 100;
-    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressBar').style.width = (answered / total * 100) + '%';
     document.getElementById('progressLine').classList.toggle('complete', answered === total);
-    document.getElementById('progressText').textContent =
-      `Progreso: ${answered} / ${total} preguntas respondidas` +
-      (answered === total ? ' ✓' : '');
+    document.getElementById('progressText').textContent = `Progreso: ${answered} / ${total} preguntas respondidas` + (answered === total ? ' ✓' : '');
   }
 };
 
-/* ---------- Renderizar formulario (IDEMPOTENTE) ---------- */
+/* ---------- Renderizar formulario ---------- */
 const preguntasContainer = document.getElementById('preguntasContainer');
-// IMPORTANTE: limpiar antes de insertar, por si el HTML ya trae preguntas
-// (por ejemplo, si el archivo desplegado fue generado con un clone que las contenía).
-preguntasContainer.innerHTML = '';
+preguntasContainer.innerHTML = ''; // Limpieza idempotente
 
 PREGUNTAS.forEach(p => {
   const div = document.createElement('div');
   div.className = 'pregunta';
   div.dataset.pid = p.id;
-
-  const pEl = document.createElement('p');
-  pEl.textContent = p.texto;
-  div.appendChild(pEl);
-
+  div.innerHTML = `<p>${UI.escapeHTML(p.texto)}</p>`;
+  
   const ops = document.createElement('div');
   ops.className = 'opciones';
-  ops.setAttribute('role', 'radiogroup');
-  ops.setAttribute('aria-label', p.texto);
-
   p.opciones.forEach(op => {
     const label = document.createElement('label');
     label.className = 'opcion';
-    const input = document.createElement('input');
-    input.type = 'radio';
-    input.name = p.id;
-    input.value = op;
-    label.appendChild(input);
-    label.appendChild(document.createTextNode(' ' + op));
+    label.innerHTML = `<input type="radio" name="${p.id}" value="${UI.escapeHTML(op)}" required> ${UI.escapeHTML(op)}`;
     ops.appendChild(label);
   });
-
   div.appendChild(ops);
   preguntasContainer.appendChild(div);
 });
@@ -565,11 +549,9 @@ const formVotacion = document.getElementById('formVotacion');
 const btnEnviarVotos = document.getElementById('btnEnviarVotos');
 let enviandoVotos = false;
 
-// Cambio en radio: sólo actualiza progreso y limpia marca "unanswered"
 formVotacion.addEventListener('change', e => {
   if (e.target && e.target.name) {
-    const wrapper = e.target.closest('.pregunta');
-    if (wrapper) wrapper.classList.remove('unanswered');
+    e.target.closest('.pregunta').style.background = 'transparent';
     App.renderProgress();
   }
 });
@@ -583,27 +565,17 @@ formVotacion.addEventListener('submit', e => {
   const missing = PREGUNTAS.filter(p => !formData.get(p.id));
 
   if (missing.length > 0) {
-    // Marcar y saltar a la primera pregunta incompleta
     PREGUNTAS.forEach(p => {
       const wrapper = formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`);
-      if (wrapper) wrapper.classList.toggle('unanswered', !formData.get(p.id));
+      if (wrapper) wrapper.style.background = !formData.get(p.id) ? '#FADBD8' : 'transparent';
     });
-    const firstMissing = missing[0];
-    const firstEl = formVotacion.querySelector(`input[name="${firstMissing.id}"]`);
-    if (firstEl) {
-      firstEl.closest('.pregunta').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      firstEl.focus({ preventScroll: true });
-    }
-    UI.toast(
-      `Faltan ${missing.length} pregunta${missing.length === 1 ? '' : 's'} por responder.`,
-      'err'
-    );
+    missing[0].id && formVotacion.querySelector(`input[name="${missing[0].id}"]`)?.focus();
+    UI.toast(`Faltan ${missing.length} preguntas.`, 'err');
     return;
   }
 
   enviandoVotos = true;
   btnEnviarVotos.disabled = true;
-  const originalLabel = btnEnviarVotos.innerHTML;
   btnEnviarVotos.innerHTML = '<span class="spinner"></span> Guardando…';
 
   try {
@@ -614,28 +586,15 @@ formVotacion.addEventListener('submit', e => {
     }
     Store.setVotos(votos);
     formVotacion.reset();
-    PREGUNTAS.forEach(p => {
-      const w = formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`);
-      if (w) w.classList.remove('unanswered');
-    });
+    PREGUNTAS.forEach(p => formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`).style.background = 'transparent');
     App.scheduleRender();
     App.renderProgress();
-
-    UI.toast(`¡Gracias! ${PREGUNTAS.length} respuestas registradas (2026–2027).`, 'ok', 4000);
-
-    // Retroalimentación: llevar al usuario a los resultados
-    setTimeout(() => {
-      const section = document.getElementById('chartsSection');
-      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 500);
+    UI.toast('¡Respuestas registradas!', 'ok');
+    document.getElementById('chartsSection').scrollIntoView({ behavior: 'smooth' });
   } catch (err) {
-    UI.toast('Error al guardar: ' + err.message, 'err');
+    UI.toast('Error al guardar', 'err');
   } finally {
-    setTimeout(() => {
-      btnEnviarVotos.disabled = false;
-      btnEnviarVotos.innerHTML = originalLabel;
-      enviandoVotos = false;
-    }, 400);
+    setTimeout(() => { btnEnviarVotos.disabled = false; btnEnviarVotos.innerHTML = 'Enviar mis respuestas'; enviandoVotos = false; }, 400);
   }
 });
 
@@ -649,84 +608,45 @@ let enviandoOpinion = false;
 textoOpinion.value = Store.getDraft();
 charCount.textContent = textoOpinion.value.length;
 
-function updateCharCount() {
-  const len = textoOpinion.value.length;
-  charCount.textContent = len;
-  charCount.classList.toggle('warn', len > 240 && len <= 270);
-  charCount.classList.toggle('danger', len > 270);
-}
-
 textoOpinion.addEventListener('input', () => {
-  updateCharCount();
+  charCount.textContent = textoOpinion.value.length;
   Store.setDraft(textoOpinion.value);
 });
-updateCharCount();
 
 formOpinion.addEventListener('submit', e => {
   e.preventDefault();
   if (enviandoOpinion) return;
-
   const texto = textoOpinion.value.trim();
-  if (texto.length < 5) {
-    UI.toast('Escribe una opinión más detallada (mínimo 5 caracteres).', 'err');
-    textoOpinion.focus();
-    return;
-  }
+  if (texto.length < 5) return UI.toast('Mínimo 5 caracteres', 'err');
 
   enviandoOpinion = true;
   btnEnviarOpinion.disabled = true;
-  const originalLabel = btnEnviarOpinion.innerHTML;
-  btnEnviarOpinion.innerHTML = '<span class="spinner"></span> Publicando…';
-
+  
   try {
     const ops = Store.getOpiniones();
     ops.push({ texto, fecha: new Date().toISOString() });
     Store.setOpiniones(ops);
     textoOpinion.value = '';
     Store.setDraft('');
-    updateCharCount();
+    charCount.textContent = '0';
     App.scheduleRender();
     UI.toast('¡Opinión publicada!', 'ok');
   } catch (err) {
-    UI.toast('Error: ' + err.message, 'err');
+    UI.toast('Error al publicar', 'err');
   } finally {
-    setTimeout(() => {
-      btnEnviarOpinion.disabled = false;
-      btnEnviarOpinion.innerHTML = originalLabel;
-      enviandoOpinion = false;
-    }, 400);
+    setTimeout(() => { btnEnviarOpinion.disabled = false; enviandoOpinion = false; }, 400);
   }
 });
 
-/* ---------- Exportar / Importar / Reset ---------- */
+/* ---------- Gestión de Datos ---------- */
 document.getElementById('btnExportar').addEventListener('click', () => {
-  const data = {
-    meta: {
-      app: 'Fisica10mo-RLRN',
-      version: 6,
-      curso: '2026-2027',
-      anio: 2026,
-      exportedAt: new Date().toISOString()
-    },
-    votos: Store.getVotos(),
-    opiniones: Store.getOpiniones()
-  };
+  const data = { meta: { version: 7, fecha: new Date().toISOString() }, votos: Store.getVotos(), opiniones: Store.getOpiniones() };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `fisica10-resultados-2026-${Date.now()}.json`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-  UI.toast('Datos exportados (curso 2026–2027)', 'ok');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `fisica10-${Date.now()}.json`;
+  document.body.appendChild(a); a.click(); a.remove(); UI.toast('Datos exportados', 'ok');
 });
 
-document.getElementById('btnImportar').addEventListener('click', () => {
-  document.getElementById('inputImportar').click();
-});
-
+document.getElementById('btnImportar').addEventListener('click', () => document.getElementById('inputImportar').click());
 document.getElementById('inputImportar').addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
@@ -734,87 +654,26 @@ document.getElementById('inputImportar').addEventListener('change', e => {
   reader.onload = ev => {
     try {
       const data = JSON.parse(ev.target.result);
-      if (!data || typeof data.votos !== 'object' || !Array.isArray(data.opiniones)) {
-        throw new Error('Formato de archivo inválido');
-      }
-      if (!confirm('Esto reemplazará los datos actuales del curso 2026–2027. ¿Continuar?')) return;
-      Store.setVotos(data.votos);
-      Store.setOpiniones(data.opiniones);
-      App.scheduleRender();
-      UI.toast('Datos importados correctamente', 'ok');
-    } catch (err) {
-      UI.toast('Error al importar: ' + err.message, 'err', 5000);
-    } finally {
-      e.target.value = '';
-    }
+      if (!data.votos || !data.opiniones) throw new Error();
+      if (!confirm('¿Reemplazar datos actuales?')) return;
+      Store.setVotos(data.votos); Store.setOpiniones(data.opiniones);
+      App.scheduleRender(); UI.toast('Datos importados', 'ok');
+    } catch { UI.toast('Archivo inválido', 'err'); } finally { e.target.value = ''; }
   };
   reader.readAsText(file);
 });
 
 document.getElementById('btnReset').addEventListener('click', () => {
-  // Conteo previo para retroalimentación informativa
-  const votos = Store.getVotos();
-  let totalVotos = 0;
-  for (const p of PREGUNTAS) {
-    totalVotos += Object.values(votos[p.id] || {}).reduce((a, b) => a + b, 0);
-  }
-  const totalOps = Store.getOpiniones().length;
-
-  const msg =
-    `¿Borrar TODOS los datos del curso 2026–2027?\n\n` +
-    `Se eliminarán:\n` +
-    `• ${UI.formatNumber(totalVotos)} voto(s)\n` +
-    `• ${UI.formatNumber(totalOps)} opinión(es)\n\n` +
-    `Esta acción no se puede deshacer.`;
-
-  if (!confirm(msg)) return;
-  Store.reset();
-  formVotacion.reset();
-  PREGUNTAS.forEach(p => {
-    const w = formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`);
-    if (w) w.classList.remove('unanswered');
-  });
-  textoOpinion.value = '';
-  updateCharCount();
-  App.scheduleRender();
-  App.renderProgress();
-  UI.toast('Datos del curso 2026–2027 borrados del dispositivo', 'info');
+  if (!confirm('¿Borrar TODOS los datos?')) return;
+  Store.reset(); formVotacion.reset(); textoOpinion.value = '';
+  App.scheduleRender(); App.renderProgress(); UI.toast('Datos borrados', 'info');
 });
 
-/* ---------- Inicialización ---------- */
+/* ---------- Init ---------- */
 window.addEventListener('load', () => {
-  if (window.particlesJS) {
-    try {
-      particlesJS('particles-js', {
-        particles: {
-          number: { value: 55, density: { enable: true, value_area: 800 } },
-          color: { value: ['#4fc3f7', '#2d7ab8', '#f0b429'] },
-          shape: { type: 'circle' },
-          opacity: { value: 0.4, random: true },
-          size: { value: 2.8, random: true },
-          line_linked: { enable: true, distance: 150, color: '#4fc3f7', opacity: 0.2, width: 1 },
-          move: { enable: true, speed: 1.1, direction: 'none', random: true, straight: false, out_mode: 'out' }
-        },
-        interactivity: {
-          detect_on: 'canvas',
-          events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
-          modes: { grab: { distance: 170, line_linked: { opacity: 0.5 } }, push: { particles_nb: 3 } }
-        },
-        retina_detect: true
-      });
-    } catch (err) {
-      console.warn('particles.js no se pudo inicializar:', err);
-    }
-  }
-
   App.initCharts();
   App.scheduleRender();
   App.renderProgress();
-
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) App.scheduleRender();
-  });
-  window.addEventListener('storage', () => App.scheduleRender());
 });
 </script>
 
