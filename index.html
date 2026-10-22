@@ -9,111 +9,42 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer=""></script>
   
   <style>
-    :root {
-      --bg-color: #F4EFE6;
-      --text-main: #2A1A1F;
-      --text-muted: #5C4B51;
-      --primary: #7A2E4D;
-      --primary-light: #B26B8E;
-      --accent: #C93C4C;
-      --card-bg: #FFFFFF;
-      --border-color: #D8CEC2;
-    }
-
+    :root { --bg-color: #F4EFE6; --text-main: #2A1A1F; --text-muted: #5C4B51; --primary: #7A2E4D; --primary-light: #B26B8E; --accent: #C93C4C; --card-bg: #FFFFFF; --border-color: #D8CEC2; }
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
     body{background-color:var(--bg-color);color:var(--text-main);line-height:1.5;min-height:100vh;overflow-x:hidden;perspective: 1000px;}
-    
-    h1, h2, h3, .stat-value, .badge, th {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    /* Header */
+    h1, h2, h3, .stat-value, .badge, th {font-family: 'Playfair Display', serif; font-weight: 700; color: var(--primary);}
     header{border-bottom:3px solid var(--primary);padding:2rem 1rem;text-align:center;margin-bottom:2rem;background:var(--card-bg);box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; z-index: 10;}
     header h1{font-size:2.4rem;margin-bottom:.2rem;line-height:1.1}
     header h2{font-family:'Inter',sans-serif;font-size:1rem;font-weight:500;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
-    .badge{display:inline-block;background:var(--primary);color:#fff;padding:.3rem 1.2rem;border-radius:4px;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;margin-top:1rem;letter-spacing:1px;box-shadow: 0 4px 8px rgba(122,46,77,0.3); transform: translateZ(20px);}
-
+    .badge{display:inline-block;background:var(--primary);color:#fff;padding:.3rem 1.2rem;border-radius:4px;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;margin-top:1rem;letter-spacing:1px;box-shadow: 0 4px 8px rgba(122,46,77,0.3); cursor: pointer; user-select: none;}
     .container{max-width:1200px;margin:0 auto;padding:0 1.5rem 3rem; position: relative; z-index: 2;}
-
-    /* Intro Box */
     .intro-box{border-left:4px solid var(--accent);background:var(--card-bg);padding:1.2rem 1.5rem;margin-bottom:2rem;box-shadow:0 2px 10px rgba(0,0,0,.05);border-radius:0 8px 8px 0}
-    .intro-box p{font-size:.9rem;margin-bottom:.5rem;color:var(--text-muted)}
-    .intro-box strong{color:var(--text-main)}
-    .intro-box strong.curso{color:var(--accent)}
-
-    /* Grid Stats */
+    .intro-box p{font-size:.9rem;margin-bottom:.5rem;color:var(--text-muted)} .intro-box strong{color:var(--text-main)} .intro-box strong.curso{color:var(--accent)}
     .grid-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:2rem}
     .stat-card{background:var(--card-bg);padding:1.5rem;border-radius:8px;border:1px solid var(--border-color);border-top:4px solid var(--primary);text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.03);position:relative; transform-style: preserve-3d; transition: transform 0.1s ease-out;}
-    .stat-value{font-size:2.2rem;color:var(--primary);line-height:1;margin-bottom:.5rem; transform: translateZ(15px);}
-    .stat-label{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600; transform: translateZ(5px);}
-    .stat-hint{font-size:.7rem;color:#999;margin-top:.4rem;font-style:italic; transform: translateZ(5px);}
-
-    /* Layouts */
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2rem}
-    
-    /* Cards (Base para 3D) */
+    .stat-value{font-size:2.2rem;color:var(--primary);line-height:1;margin-bottom:.5rem; transform: translateZ(15px);} .stat-label{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600; transform: translateZ(5px);} .stat-hint{font-size:.7rem;color:#999;margin-top:.4rem;font-style:italic; transform: translateZ(5px);}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem} .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2rem}
     .card{background:var(--card-bg);padding:2rem;border-radius:8px;border:1px solid var(--border-color);box-shadow:0 4px 12px rgba(0,0,0,.03); transform-style: preserve-3d; transition: transform 0.1s ease-out, box-shadow 0.3s ease;}
-    .card h3{font-size:1.4rem;border-bottom:2px solid var(--primary);padding-bottom:.5rem;margin-bottom:.5rem; transform: translateZ(10px);}
-    .card .subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:1.5rem; transform: translateZ(5px);}
-
-    /* Preguntas */
-    .pregunta{margin-bottom:1.5rem; transition: background 0.3s;}
-    .pregunta p{font-weight:600;font-size:.9rem;margin-bottom:.6rem;color:var(--text-main)}
-    .opciones{display:flex;flex-direction:column;gap:.4rem}
-    .opcion{display:flex;align-items:center;background:#FAF8F5;padding:.5rem .8rem;border-radius:4px;border:1px solid var(--border-color);cursor:pointer;transition:all .2s}
-    .opcion:hover{background:#F0EAE1;border-color:var(--primary-light); transform: translateX(5px);}
-    .opcion input[type=radio]{margin-right:.6rem;accent-color:var(--primary);width:16px;height:16px;cursor:pointer}
-    .opcion label{cursor:pointer;font-size:.85rem;flex:1;color:var(--text-main)}
-    
-    /* Barra de Progreso */
-    .progress-line{height:8px;background:#E8E0D5;border-radius:4px;overflow:hidden;margin-bottom:1rem}
-    .progress-line > div{height:100%;width:0;background:var(--accent);transition:width .3s ease}
-    .progress-line.complete > div{background:var(--primary)}
-
-    /* Botones 3D */
+    .card h3{font-size:1.4rem;border-bottom:2px solid var(--primary);padding-bottom:.5rem;margin-bottom:.5rem; transform: translateZ(10px);} .card .subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:1.5rem; transform: translateZ(5px);}
+    .pregunta{margin-bottom:1.5rem; transition: background 0.3s;} .pregunta p{font-weight:600;font-size:.9rem;margin-bottom:.6rem;color:var(--text-main)}
+    .opciones{display:flex;flex-direction:column;gap:.4rem} .opcion{display:flex;align-items:center;background:#FAF8F5;padding:.5rem .8rem;border-radius:4px;border:1px solid var(--border-color);cursor:pointer;transition:all .2s}
+    .opcion:hover{background:#F0EAE1;border-color:var(--primary-light); transform: translateX(5px);} .opcion input[type=radio]{margin-right:.6rem;accent-color:var(--primary);width:16px;height:16px;cursor:pointer} .opcion label{cursor:pointer;font-size:.85rem;flex:1;color:var(--text-main)}
+    .progress-line{height:8px;background:#E8E0D5;border-radius:4px;overflow:hidden;margin-bottom:1rem} .progress-line > div{height:100%;width:0;background:var(--accent);transition:width .3s ease} .progress-line.complete > div{background:var(--primary)}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:var(--primary);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:4px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .15s ease;margin-top:.5rem;width:100%;box-shadow: 0 4px 0 #5A1E37; position: relative; top: 0;}
-    .btn:hover:not(:disabled){background:#5A1E37; top: -2px; box-shadow: 0 6px 0 #5A1E37;}
-    .btn:active:not(:disabled){top: 2px; box-shadow: 0 2px 0 #5A1E37;}
-    .btn:disabled{opacity:.6;cursor:not-allowed; box-shadow: none; background: #999;}
-    .btn-secondary{background:var(--accent); box-shadow: 0 4px 0 #A62A38;}
-    .btn-secondary:hover:not(:disabled){background:#A62A38; box-shadow: 0 6px 0 #A62A38;}
-    .btn-secondary:active:not(:disabled){box-shadow: 0 2px 0 #A62A38;}
-    .btn-danger{background:var(--text-main);width:auto; box-shadow: 0 4px 0 #110B0D;}
-    .btn-danger:hover:not(:disabled){background:#110B0D; box-shadow: 0 6px 0 #110B0D;}
-    .btn-sm{padding:.5rem 1rem;font-size:.8rem;width:auto}
-    .btn-group{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
-
-    /* Mensaje de Bloqueo */
-    .voted-message {display: none; background: #E8F5E9; color: #2E7D32; padding: 1rem; border-radius: 4px; text-align: center; border: 1px solid #A5D6A7; margin-top: 1rem; font-weight: 600;}
-    .voted-message.visible {display: block; animation: fadeIn 0.5s;}
-
-    /* Textarea y Opiniones */
-    textarea{width:100%;padding:.8rem;border:1px solid var(--border-color);border-radius:4px;font-size:.9rem;resize:vertical;min-height:80px;font-family:'Inter',sans-serif;background:#FAF8F5;color:var(--text-main);transition: border-color 0.3s;}
-    textarea:focus{outline:none;border-color:var(--primary); box-shadow: 0 0 0 3px rgba(122,46,77,0.1);}
-    .char-count{font-size:.75rem;color:var(--text-muted);text-align:right;margin-top:.3rem}
-    .opiniones-list{margin-top:1.5rem;max-height:250px;overflow-y:auto;padding-right:.5rem}
-    .opinion-item{background:#FAF8F5;border-left:3px solid var(--accent);padding:.8rem 1rem;margin-bottom:.8rem;font-size:.85rem;color:var(--text-main); transition: transform 0.2s;}
-    .opinion-item:hover {transform: translateX(5px);}
-    .opinion-item .fecha{display:block;font-size:.7rem;color:var(--text-muted);margin-top:.4rem}
-    
-    .habilidades-tag{display:inline-block;background:#EBE4D8;color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.75rem;margin:.2rem;font-weight:600; transition: transform 0.2s;}
-    .habilidades-tag:hover{transform: scale(1.05);}
-
-    /* Tabla */
-    .table-wrap{overflow-x:auto;max-height:400px;margin-top:1rem}
-    table{width:100%;border-collapse:collapse;font-size:.85rem;text-align:left}
-    th,td{padding:.8rem;border-bottom:1px solid var(--border-color)}
-    th{background:var(--primary);color:#fff;font-family:'Inter',sans-serif;font-weight:600;position:sticky;top:0;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px}
-    tr:hover{background:#FAF8F5}
-    .top-option{color:var(--accent);font-weight:700}
-
-    /* Gráficos */
+    .btn:hover:not(:disabled){background:#5A1E37; top: -2px; box-shadow: 0 6px 0 #5A1E37;} .btn:active:not(:disabled){top: 2px; box-shadow: 0 2px 0 #5A1E37;} .btn:disabled{opacity:.6;cursor:not-allowed; box-shadow: none; background: #999;}
+    .btn-secondary{background:var(--accent); box-shadow: 0 4px 0 #A62A38;} .btn-secondary:hover:not(:disabled){background:#A62A38; box-shadow: 0 6px 0 #A62A38;} .btn-secondary:active:not(:disabled){box-shadow: 0 2px 0 #A62A38;}
+    .btn-sm{padding:.5rem 1rem;font-size:.8rem;width:auto} .btn-group{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+    .voted-message {display: none; background: #E8F5E9; color: #2E7D32; padding: 1rem; border-radius: 4px; text-align: center; border: 1px solid #A5D6A7; margin-top: 1rem; font-weight: 600;} .voted-message.visible {display: block; animation: fadeIn 0.5s;}
+    textarea{width:100%;padding:.8rem;border:1px solid var(--border-color);border-radius:4px;font-size:.9rem;resize:vertical;min-height:80px;font-family:'Inter',sans-serif;background:#FAF8F5;color:var(--text-main);transition: border-color 0.3s;} textarea:focus{outline:none;border-color:var(--primary); box-shadow: 0 0 0 3px rgba(122,46,77,0.1);}
+    .char-count{font-size:.75rem;color:var(--text-muted);text-align:right;margin-top:.3rem} .opiniones-list{margin-top:1.5rem;max-height:250px;overflow-y:auto;padding-right:.5rem}
+    .opinion-item{background:#FAF8F5;border-left:3px solid var(--accent);padding:.8rem 1rem;margin-bottom:.8rem;font-size:.85rem;color:var(--text-main); transition: transform 0.2s;} .opinion-item:hover {transform: translateX(5px);} .opinion-item .fecha{display:block;font-size:.7rem;color:var(--text-muted);margin-top:.4rem}
+    .habilidades-tag{display:inline-block;background:#EBE4D8;color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.75rem;margin:.2rem;font-weight:600; transition: transform 0.2s;} .habilidades-tag:hover{transform: scale(1.05);}
+    .table-wrap{overflow-x:auto;max-height:400px;margin-top:1rem} table{width:100%;border-collapse:collapse;font-size:.85rem;text-align:left} th,td{padding:.8rem;border-bottom:1px solid var(--border-color)} th{background:var(--primary);color:#fff;font-family:'Inter',sans-serif;font-weight:600;position:sticky;top:0;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px} tr:hover{background:#FAF8F5} .top-option{color:var(--accent);font-weight:700}
     .chart-container{position:relative;height:250px;width:100%; transform: translateZ(20px);}
+    .nota{font-size:.75rem;color:#999;margin-top:1rem;font-style:italic} .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite} @keyframes spin{to{transform:rotate(360deg)}} @keyframes fadeIn {from{opacity:0}to{opacity:1}}
+    .toast-container{position:fixed;top:1rem;right:1rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;max-width:340px} .toast{background:var(--text-main);color:#fff;padding:.8rem 1.2rem;border-radius:4px;font-size:.85rem;box-shadow:0 4px 12px rgba(0,0,0,.15);border-left:4px solid var(--primary-light);animation:toastIn .3s ease} .toast.toast-ok{border-left-color:#4CAF50} .toast.toast-err{border-left-color:#F44336} @keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
     
-    /* Logs de Deploy */
+    /* Estilos para el banner de despliegue */
     .config-input{width:100%;padding:.7rem;border:1px solid var(--border-color);border-radius:4px;font-size:.9rem;margin-bottom:.8rem;background:#FAF8F5}
     .config-input:focus{outline:none;border-color:var(--primary)}
     .config-log{font-family:monospace;font-size:.8rem;background:#2A1A1F;color:#fff;padding:1rem;border-radius:4px;margin-top:1rem;max-height:200px;overflow-y:auto;display:none}
@@ -124,23 +55,7 @@
     .config-success.visible{display:block}
     .config-success a{color:var(--primary);font-weight:bold;word-break:break-all}
 
-    .nota{font-size:.75rem;color:#999;margin-top:1rem;font-style:italic}
-    .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    @keyframes fadeIn {from{opacity:0}to{opacity:1}}
-    
-    /* Toasts */
-    .toast-container{position:fixed;top:1rem;right:1rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;max-width:340px}
-    .toast{background:var(--text-main);color:#fff;padding:.8rem 1.2rem;border-radius:4px;font-size:.85rem;box-shadow:0 4px 12px rgba(0,0,0,.15);border-left:4px solid var(--primary-light);animation:toastIn .3s ease}
-    .toast.toast-ok{border-left-color:#4CAF50}
-    .toast.toast-err{border-left-color:#F44336}
-    @keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-
-    @media(max-width:900px){
-      .grid-stats{grid-template-columns:repeat(2,1fr)}
-      .grid-2,.grid-3{grid-template-columns:1fr}
-      header h1{font-size:1.8rem}
-    }
+    @media(max-width:900px){ .grid-stats{grid-template-columns:repeat(2,1fr)} .grid-2,.grid-3{grid-template-columns:1fr} header h1{font-size:1.8rem} }
   </style>
 </head>
 <body>
@@ -150,19 +65,19 @@
 <header>
   <h1>Diagnóstico y Seguimiento</h1>
   <h2>Física — 10mo Grado · IPU “Roberto Leonardo Roque Núñez”</h2>
-  <div class="badge">Curso 2026 – 2027</div>
+  <div class="badge" id="secretBadge">Curso 2026 – 2027</div>
 </header>
 
 <div class="container">
 
   <div class="intro-box">
     <p><strong>Objetivo del curso <span class="curso">2026 – 2027</span>:</strong> Medir de forma anónima la comprensión de la explicación del profesor, la resolución de ejercicios, el dominio de habilidades previas y otros indicadores de actualidad.</p>
-    <p><strong>Privacidad:</strong> Sin datos personales. Los votos y opiniones se almacenan localmente en este dispositivo y se visualizan en gráficas dinámicas.</p>
+    <p><strong>Privacidad:</strong> Sin datos personales. Los votos se envían a un servidor central para ser contados.</p>
   </div>
 
   <div class="grid-stats">
     <div class="stat-card"><div class="stat-value" id="statVotos">0</div><div class="stat-label">Total de votos</div><div class="stat-hint" id="statVotosHint">Sin registros</div></div>
-    <div class="stat-card"><div class="stat-value" id="statOpiniones">0</div><div class="stat-label">Opiniones</div><div class="stat-hint" id="statOpinionesHint">Sin registros</div></div>
+    <div class="stat-card"><div class="stat-value" id="statParticipantes">0</div><div class="stat-label">Participantes</div><div class="stat-hint" id="statParticipantesHint">Sin registros</div></div>
     <div class="stat-card"><div class="stat-value" id="statSatisfaccion">—</div><div class="stat-label">Comprensión</div><div class="stat-hint">Basado en P1</div></div>
     <div class="stat-card"><div class="stat-value" id="statHabilidades">—</div><div class="stat-label">Habilidades Previas</div><div class="stat-hint">Basado en P3</div></div>
   </div>
@@ -170,18 +85,16 @@
   <div class="grid-2">
     <div class="card">
       <h3>Medidores de Opinión</h3>
-      <p class="subtitle" id="progressText">Progreso: 0 / 10 preguntas respondidas</p>
+      <p class="subtitle" id="progressText">Progreso: 0 / 10 preguntas</p>
       <div class="progress-line" id="progressLine"><div id="progressBar" style="width: 0%;"></div></div>
       
-      <!-- Formulario de Votación -->
       <form id="formVotacion" novalidate="" autocomplete="off" style="display: block;">
         <div id="preguntasContainer"></div>
         <button type="submit" class="btn" id="btnEnviarVotos">Enviar mis respuestas</button>
       </form>
 
-      <!-- Mensaje que aparece si ya votó -->
       <div id="votedMessage" class="voted-message">
-        ✅ Ya has registrado tus respuestas en este dispositivo. ¡Gracias por participar!
+        ✅ Ya has registrado tus respuestas desde este dispositivo. ¡Gracias por participar!
       </div>
     </div>
 
@@ -211,26 +124,14 @@
   </div>
 
   <div class="grid-3" id="chartsSection">
-    <div class="card">
-      <h3>Comprensión y Ejercicios</h3>
-      <p class="subtitle">Comparativa P1 y P2</p>
-      <div class="chart-container"><canvas id="chartComprension" width="562" height="468" style="display: block; box-sizing: border-box; height: 250px; width: 300px;"></canvas></div>
-    </div>
-    <div class="card">
-      <h3>Habilidades Previas</h3>
-      <p class="subtitle">Dominio (P3)</p>
-      <div class="chart-container"><canvas id="chartHabilidades" width="562" height="468" style="display: block; box-sizing: border-box; height: 250px; width: 300px;"></canvas></div>
-    </div>
-    <div class="card">
-      <h3>Causa Principal</h3>
-      <p class="subtitle">Dificultades (P4)</p>
-      <div class="chart-container"><canvas id="chartCausa" width="562" height="468" style="display: block; box-sizing: border-box; height: 250px; width: 300px;"></canvas></div>
-    </div>
+    <div class="card"><h3>Comprensión y Ejercicios</h3><p class="subtitle">Comparativa P1 y P2</p><div class="chart-container"><canvas id="chartComprension" width="562" height="468" style="display: block; box-sizing: border-box; height: 250px; width: 300px;"></canvas></div></div>
+    <div class="card"><h3>Habilidades Previas</h3><p class="subtitle">Dominio (P3)</p><div class="chart-container"><canvas id="chartHabilidades" width="562" height="468" style="display: block; box-sizing: border-box; height: 250px; width: 300px;"></canvas></div></div>
+    <div class="card"><h3>Causa Principal</h3><p class="subtitle">Dificultades (P4)</p><div class="chart-container"><canvas id="chartCausa" width="562" height="468" style="display: block; box-sizing: border-box; height: 250px; width: 300px;"></canvas></div></div>
   </div>
 
   <div class="card" style="margin-top:2rem">
     <h3>Tabla de Seguimiento</h3>
-    <p class="subtitle">Desglose detallado por pregunta y opción. La opción más votada está resaltada.</p>
+    <p class="subtitle">Desglose detallado por pregunta y opción (Servidor Central).</p>
     <div class="table-wrap">
       <table id="tablaResultados">
         <thead><tr><th>Pregunta</th><th>Opción</th><th>Votos</th><th>%</th></tr></thead>
@@ -240,28 +141,28 @@
     <p class="nota" id="totalVotosNota">Total de votos registrados: 0</p>
   </div>
 
-  <div class="card" style="margin-top:2rem">
-    <h3>Gestión de Datos</h3>
-    <p class="subtitle">Exporta, importa o reinicia los datos. <strong>Borrar datos también permite volver a votar.</strong></p>
+  <!-- TARJETA OCULTA (Modo Profe) -->
+  <div class="card" id="teacherCard" style="display: none; margin-top:2rem; border: 2px dashed #2E7D32;">
+    <h3>Gestión del Aula</h3>
+    <p class="subtitle">Herramientas exclusivas para el profesor.</p>
     <div class="btn-group">
-      <button class="btn btn-sm" id="btnExportar" type="button">⬇ Exportar JSON</button>
-      <button class="btn btn-sm" id="btnImportar" type="button">⬆ Importar JSON</button>
-      <button class="btn btn-danger btn-sm" id="btnReset" type="button">🗑 Borrar datos y reiniciar</button>
+      <button class="btn btn-secondary btn-sm" id="btnNextStudent" type="button" style="background: #2E7D32; box-shadow: 0 4px 0 #1B5E20;">
+        🔄 Habilitar siguiente voto (Modo Profe)
+      </button>
     </div>
-    <input type="file" id="inputImportar" accept="application/json" hidden="">
   </div>
 
+  <!-- BANNER DE DESPLIEGUE EN GITHUB -->
   
 
 </div>
 
 <footer style="text-align:center;padding:2rem;font-size:.8rem;color:var(--text-muted);border-top:1px solid var(--border-color)">
   <p>© 2026 IPU “Roberto Leonardo Roque Núñez” · Departamento de Física</p>
-  <p>Panel anónimo con fines pedagógicos.</p>
 </footer>
 
 <!-- ============================================================
-     SCRIPT DE DESPLIEGUE
+     SCRIPT DE DESPLIEGUE AUTOMÁTICO
      ============================================================ -->
 
 
@@ -285,26 +186,29 @@ const UI = {
   formatPercent(ratio) { return new Intl.NumberFormat('es-ES', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(ratio); }
 };
 
-/* ---------- Store ---------- */
+/* ---------- Configuración del Servidor ---------- */
+const API_URL = 'https://fisica10mo-votos.isnielbh88.workers.dev';
+
+function getDeviceId() {
+  let id = localStorage.getItem('fisica_device_id');
+  if (!id) {
+    id = (crypto.randomUUID && crypto.randomUUID()) || ('dev-' + Date.now() + '-' + Math.random().toString(36).slice(2));
+    localStorage.setItem('fisica_device_id', id);
+  }
+  return id;
+}
+
+/* ---------- LocalStore ---------- */
 const Store = {
-  K_VOTOS: 'fisica10_votos_v8',
   K_OPINIONES: 'fisica10_opiniones_v8',
   K_DRAFT: 'fisica10_draft_v8',
-  K_HAS_VOTED: 'fisica10_has_voted_v8', // Bandera de bloqueo
-  getVotos() { try { return JSON.parse(localStorage.getItem(this.K_VOTOS) || '{}'); } catch { return {}; } },
-  setVotos(v) { localStorage.setItem(this.K_VOTOS, JSON.stringify(v)); },
+  K_HAS_VOTED: 'fisica10_has_voted_v8',
   getOpiniones() { try { return JSON.parse(localStorage.getItem(this.K_OPINIONES) || '[]'); } catch { return []; } },
   setOpiniones(o) { localStorage.setItem(this.K_OPINIONES, JSON.stringify(o)); },
   getDraft() { return localStorage.getItem(this.K_DRAFT) || ''; },
   setDraft(t) { localStorage.setItem(this.K_DRAFT, t); },
   hasVoted() { return localStorage.getItem(this.K_HAS_VOTED) === 'true'; },
-  setHasVoted(val) { localStorage.setItem(this.K_HAS_VOTED, val); },
-  reset() { 
-    localStorage.removeItem(this.K_VOTOS); 
-    localStorage.removeItem(this.K_OPINIONES); 
-    localStorage.removeItem(this.K_DRAFT); 
-    localStorage.removeItem(this.K_HAS_VOTED); // Se borra la bandera para permitir votar de nuevo
-  }
+  setHasVoted(val) { localStorage.setItem(this.K_HAS_VOTED, val); }
 };
 
 /* ---------- Preguntas ---------- */
@@ -321,32 +225,21 @@ const PREGUNTAS = [
   { id: 'p10', texto: '¿Utilizas dispositivos tecnológicos para estudiar o practicar?', opciones: ['Frecuentemente', 'Ocasionalmente', 'Rara vez', 'Nunca'] }
 ];
 
-/* ---------- Plugin para dibujar porcentajes en gráficos ---------- */
+/* ---------- Plugin DataLabels ---------- */
 const dataLabelsPlugin = {
   id: 'dataLabels',
   afterDatasetsDraw(chart) {
     const { ctx } = chart;
     ctx.save();
-    ctx.font = 'bold 12px "Inter", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = '#fff'; 
-    ctx.shadowColor = 'rgba(0,0,0,0.5)';
-    ctx.shadowBlur = 4;
-
+    ctx.font = 'bold 12px "Inter", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#fff'; ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 4;
     chart.data.datasets.forEach((dataset, i) => {
-      const meta = chart.getDatasetMeta(i);
-      if (meta.hidden) return;
+      const meta = chart.getDatasetMeta(i); if (meta.hidden) return;
       meta.data.forEach((element, index) => {
         const value = dataset.data[index];
         if (value > 0) {
           let text = value;
-          if (chart.config.type === 'doughnut' || chart.config.type === 'pie') {
-            const total = dataset.data.reduce((a, b) => a + b, 0);
-            text = ((value / total) * 100).toFixed(0) + '%';
-          }
-          const position = element.tooltipPosition();
-          ctx.fillText(text, position.x, position.y);
+          if (chart.config.type === 'doughnut' || chart.config.type === 'pie') { const total = dataset.data.reduce((a, b) => a + b, 0); text = ((value / total) * 100).toFixed(0) + '%'; }
+          const position = element.tooltipPosition(); ctx.fillText(text, position.x, position.y);
         }
       });
     });
@@ -356,360 +249,164 @@ const dataLabelsPlugin = {
 
 /* ---------- App ---------- */
 const App = {
-  charts: {},
-  renderScheduled: false,
-  chartsAvailable: false,
+  charts: {}, renderScheduled: false, chartsAvailable: false, globalVotos: {},
 
   scheduleRender() {
-    if (this.renderScheduled) return;
-    this.renderScheduled = true;
-    requestAnimationFrame(() => {
-      this.renderStats();
-      this.renderCharts();
-      this.renderTable();
-      this.renderOpiniones();
-      this.renderScheduled = false;
-    });
+    if (this.renderScheduled) return; this.renderScheduled = true;
+    requestAnimationFrame(() => { this.renderStats(); this.renderCharts(); this.renderTable(); this.renderOpiniones(); this.renderScheduled = false; });
   },
 
   renderStats() {
-    const votos = Store.getVotos(), opiniones = Store.getOpiniones();
-    let totalVotos = 0;
-    for (const p of PREGUNTAS) totalVotos += Object.values(votos[p.id] || {}).reduce((a, b) => a + b, 0);
-
-    const p1 = votos.p1 || {};
-    const sumP1 = (p1['Siempre']||0)*5 + (p1['Casi siempre']||0)*4 + (p1['A veces']||0)*3 + (p1['Casi nunca']||0)*2 + (p1['Nunca']||0)*1;
-    const totP1 = Object.values(p1).reduce((a, b) => a + b, 0);
-    const satisfaccion = totP1 > 0 ? Math.round((sumP1 / (totP1 * 5)) * 100) : null;
-
-    const p3 = votos.p3 || {};
-    const totP3 = Object.values(p3).reduce((a, b) => a + b, 0);
-    const domina = (p3['Totalmente'] || 0) + (p3['Parcialmente'] || 0);
-    const dominio = totP3 > 0 ? Math.round((domina / totP3) * 100) : null;
-
-    document.getElementById('statVotos').textContent = UI.formatNumber(totalVotos);
-    document.getElementById('statOpiniones').textContent = UI.formatNumber(opiniones.length);
-    document.getElementById('statSatisfaccion').textContent = satisfaccion !== null ? `${satisfaccion}%` : '—';
-    document.getElementById('statHabilidades').textContent = dominio !== null ? `${dominio}%` : '—';
-    
-    document.getElementById('statVotosHint').textContent = totalVotos > 0 ? `${PREGUNTAS.length} preguntas` : 'Sin registros';
-    document.getElementById('statOpinionesHint').textContent = opiniones.length > 0 ? 'Ver lista abajo' : 'Sin registros';
+    const votos = this.globalVotos, opiniones = Store.getOpiniones();
+    let totalVotos = 0; for (const p of PREGUNTAS) totalVotos += Object.values(votos[p.id] || {}).reduce((a, b) => a + b, 0);
+    const p1 = votos.p1 || {}; const sumP1 = (p1['Siempre']||0)*5 + (p1['Casi siempre']||0)*4 + (p1['A veces']||0)*3 + (p1['Casi nunca']||0)*2 + (p1['Nunca']||0)*1; const totP1 = Object.values(p1).reduce((a, b) => a + b, 0); const satisfaccion = totP1 > 0 ? Math.round((sumP1 / (totP1 * 5)) * 100) : null;
+    const p3 = votos.p3 || {}; const totP3 = Object.values(p3).reduce((a, b) => a + b, 0); const domina = (p3['Totalmente'] || 0) + (p3['Parcialmente'] || 0); const dominio = totP3 > 0 ? Math.round((domina / totP3) * 100) : null;
+    document.getElementById('statVotos').textContent = UI.formatNumber(totalVotos); document.getElementById('statOpiniones').textContent = UI.formatNumber(opiniones.length);
+    document.getElementById('statSatisfaccion').textContent = satisfaccion !== null ? `${satisfaccion}%` : '—'; document.getElementById('statHabilidades').textContent = dominio !== null ? `${dominio}%` : '—';
   },
 
   initCharts() {
-    if (typeof Chart === 'undefined') return UI.toast('No se cargaron las gráficas.', 'err');
-    this.chartsAvailable = true;
-
-    const colors = ['#7A2E4D', '#B26B8E', '#C93C4C', '#E6D3D8', '#D8CEC2'];
-    Chart.defaults.font.family = "'Inter', sans-serif";
-    Chart.defaults.color = '#2A1A1F';
-
-    this.charts.comprension = new Chart(document.getElementById('chartComprension'), {
-      type: 'bar',
-      data: { labels: [], datasets: [] },
-      options: {
-        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { display: false }, dataLabels: {} },
-        scales: { x: { grid: { display: false } }, y: { grid: { display: false } } }
-      },
-      plugins: [dataLabelsPlugin]
-    });
-
-    this.charts.habilidades = new Chart(document.getElementById('chartHabilidades'), {
-      type: 'doughnut',
-      data: { labels: [], datasets: [{ data: [], backgroundColor: colors, borderWidth: 2, borderColor: '#fff' }] },
-      options: {
-        responsive: true, maintainAspectRatio: false, cutout: '55%',
-        plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 20 } }, dataLabels: {} }
-      },
-      plugins: [dataLabelsPlugin]
-    });
-
-    this.charts.causa = new Chart(document.getElementById('chartCausa'), {
-      type: 'bar',
-      data: { labels: [], datasets: [{ data: [], backgroundColor: '#C93C4C', borderRadius: 4 }] },
-      options: {
-        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { display: false }, dataLabels: {} },
-        scales: { x: { grid: { display: false }, display: false }, y: { grid: { display: false } } }
-      },
-      plugins: [dataLabelsPlugin]
-    });
+    if (typeof Chart === 'undefined') return UI.toast('No se cargaron las gráficas.', 'err'); this.chartsAvailable = true;
+    const colors = ['#7A2E4D', '#B26B8E', '#C93C4C', '#E6D3D8', '#D8CEC2']; Chart.defaults.font.family = "'Inter', sans-serif"; Chart.defaults.color = '#2A1A1F';
+    this.charts.comprension = new Chart(document.getElementById('chartComprension'), { type: 'bar', data: { labels: [], datasets: [] }, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false } } } }, plugins: [dataLabelsPlugin] });
+    this.charts.habilidades = new Chart(document.getElementById('chartHabilidades'), { type: 'doughnut', data: { labels: [], datasets: [{ data: [], backgroundColor: colors, borderWidth: 2, borderColor: '#fff' }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '55%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 20 } } } }, plugins: [dataLabelsPlugin] });
+    this.charts.causa = new Chart(document.getElementById('chartCausa'), { type: 'bar', data: { labels: [], datasets: [{ data: [], backgroundColor: '#C93C4C', borderRadius: 4 }] }, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, display: false }, y: { grid: { display: false } } } }, plugins: [dataLabelsPlugin] });
   },
 
   renderCharts() {
-    if (!this.chartsAvailable) return;
-    const votos = Store.getVotos();
-
-    const labelsCmp = ['Siempre', 'Casi siempre', 'A veces', 'Casi nunca', 'Nunca'];
-    this.charts.comprension.data.labels = labelsCmp;
-    this.charts.comprension.data.datasets = [
-      { label: 'Comprensión', data: labelsCmp.map(l => (votos.p1 && votos.p1[l]) || 0), backgroundColor: '#7A2E4D', borderRadius: 4 },
-      { label: 'Resolución', data: ['Sin dificultad', 'Con poca ayuda', 'Con mucha ayuda', 'No puedo'].map(l => (votos.p2 && votos.p2[l]) || 0).concat([0]), backgroundColor: '#C93C4C', borderRadius: 4 }
-    ];
-    this.charts.comprension.update();
-
-    const labelsP3 = ['Totalmente', 'Parcialmente', 'No', 'No sé'];
-    this.charts.habilidades.data.labels = labelsP3;
-    this.charts.habilidades.data.datasets[0].data = labelsP3.map(l => (votos.p3 && votos.p3[l]) || 0);
-    this.charts.habilidades.update();
-
-    const labelsP4 = ['Explicación', 'Falta de base', 'Pocos ejercicios', 'Falta de estudio', 'Otra'];
-    this.charts.causa.data.labels = labelsP4;
-    this.charts.causa.data.datasets[0].data = ['Explicación del profesor', 'Falta de base previa', 'Pocos ejercicios', 'Falta de estudio', 'Otra'].map(l => (votos.p4 && votos.p4[l]) || 0);
-    this.charts.causa.update();
+    if (!this.chartsAvailable) return; const votos = this.globalVotos;
+    const labelsCmp = ['Siempre', 'Casi siempre', 'A veces', 'Casi nunca', 'Nunca']; this.charts.comprension.data.labels = labelsCmp;
+    this.charts.comprension.data.datasets = [ { label: 'Comprensión', data: labelsCmp.map(l => (votos.p1 && votos.p1[l]) || 0), backgroundColor: '#7A2E4D', borderRadius: 4 }, { label: 'Resolución', data: ['Sin dificultad', 'Con poca ayuda', 'Con mucha ayuda', 'No puedo'].map(l => (votos.p2 && votos.p2[l]) || 0).concat([0]), backgroundColor: '#C93C4C', borderRadius: 4 } ]; this.charts.comprension.update();
+    const labelsP3 = ['Totalmente', 'Parcialmente', 'No', 'No sé']; this.charts.habilidades.data.labels = labelsP3; this.charts.habilidades.data.datasets[0].data = labelsP3.map(l => (votos.p3 && votos.p3[l]) || 0); this.charts.habilidades.update();
+    const labelsP4 = ['Explicación', 'Falta de base', 'Pocos ejercicios', 'Falta de estudio', 'Otra']; this.charts.causa.data.labels = labelsP4; this.charts.causa.data.datasets[0].data = ['Explicación del profesor', 'Falta de base previa', 'Pocos ejercicios', 'Falta de estudio', 'Otra'].map(l => (votos.p4 && votos.p4[l]) || 0); this.charts.causa.update();
   },
 
   renderTable() {
-    const votos = Store.getVotos(), tbody = document.getElementById('tablaBody');
-    tbody.innerHTML = '';
-    let totalGeneral = 0, algunaFila = false;
-
+    const votos = this.globalVotos, tbody = document.getElementById('tablaBody'); tbody.innerHTML = ''; let totalGeneral = 0, algunaFila = false;
     PREGUNTAS.forEach(p => {
-      const c = votos[p.id] || {};
-      const totalPreg = Object.values(c).reduce((a, b) => a + b, 0);
-      totalGeneral += totalPreg;
-      if (totalPreg === 0) return;
-      algunaFila = true;
-
-      let topOption = null, topValue = -1;
-      p.opciones.forEach(op => { const v = c[op] || 0; if (v > topValue) { topValue = v; topOption = op; } });
-
+      const c = votos[p.id] || {}; const totalPreg = Object.values(c).reduce((a, b) => a + b, 0); totalGeneral += totalPreg; if (totalPreg === 0) return; algunaFila = true;
+      let topOption = null, topValue = -1; p.opciones.forEach(op => { const v = c[op] || 0; if (v > topValue) { topValue = v; topOption = op; } });
       p.opciones.forEach((op, idx) => {
-        const v = c[op] || 0;
-        const pct = UI.formatPercent(v / totalPreg);
-        const tr = document.createElement('tr');
-
-        if (idx === 0) {
-          const tdP = document.createElement('td');
-          tdP.textContent = p.texto; tdP.rowSpan = p.opciones.length; tdP.style.fontWeight = '600';
-          tr.appendChild(tdP);
-        }
-
-        tr.innerHTML += `<td class="${op === topOption && v > 0 ? 'top-option' : ''}">${UI.escapeHTML(op)}</td>
-                         <td class="${op === topOption && v > 0 ? 'top-option' : ''}">${v}</td>
-                         <td class="${op === topOption && v > 0 ? 'top-option' : ''}">${pct}</td>`;
+        const v = c[op] || 0; const pct = UI.formatPercent(v / totalPreg); const tr = document.createElement('tr');
+        if (idx === 0) { const tdP = document.createElement('td'); tdP.textContent = p.texto; tdP.rowSpan = p.opciones.length; tdP.style.fontWeight = '600'; tr.appendChild(tdP); }
+        tr.innerHTML += `<td class="${op === topOption && v > 0 ? 'top-option' : ''}">${UI.escapeHTML(op)}</td><td class="${op === topOption && v > 0 ? 'top-option' : ''}">${v}</td><td class="${op === topOption && v > 0 ? 'top-option' : ''}">${pct}</td>`;
         tbody.appendChild(tr);
       });
     });
-
     if (!algunaFila) tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:#999;padding:2rem">Aún no hay votos registrados.</td></tr>`;
-    document.getElementById('totalVotosNota').textContent = `Total de votos registrados: ${UI.formatNumber(totalGeneral)}`;
+    document.getElementById('totalVotosNota').textContent = `Total de votos globales: ${UI.formatNumber(totalGeneral)}`;
   },
 
   renderOpiniones() {
     const ops = Store.getOpiniones(), cont = document.getElementById('listaOpiniones');
-    if (!ops.length) {
-      cont.innerHTML = '<p style="color:#999;font-size:.85rem">Aún no hay opiniones. ¡Comparte la tuya!</p>';
-      return;
-    }
+    if (!ops.length) { cont.innerHTML = '<p style="color:#999;font-size:.85rem">Aún no hay opiniones.</p>'; return; }
     cont.innerHTML = [...ops].reverse().map(o => `<div class="opinion-item">${UI.escapeHTML(o.texto)}<span class="fecha">${UI.formatDate(o.fecha)}</span></div>`).join('');
   },
 
   renderProgress() {
-    const form = document.getElementById('formVotacion');
-    let answered = 0;
-    PREGUNTAS.forEach(p => { if (form.querySelector(`input[name="${p.id}"]:checked`)) answered++; });
-    const total = PREGUNTAS.length;
-    document.getElementById('progressBar').style.width = (answered / total * 100) + '%';
-    document.getElementById('progressLine').classList.toggle('complete', answered === total);
-    document.getElementById('progressText').textContent = `Progreso: ${answered} / ${total} preguntas respondidas` + (answered === total ? ' ✓' : '');
+    const form = document.getElementById('formVotacion'); let answered = 0;
+    PREGUNTAS.forEach(p => { if (form.querySelector(`input[name="${p.id}"]:checked`)) answered++; }); const total = PREGUNTAS.length;
+    document.getElementById('progressBar').style.width = (answered / total * 100) + '%'; document.getElementById('progressLine').classList.toggle('complete', answered === total);
+    document.getElementById('progressText').textContent = `Progreso: ${answered} / ${total} preguntas` + (answered === total ? ' ✓' : '');
   },
 
   checkVoteStatus() {
-    const form = document.getElementById('formVotacion');
-    const msg = document.getElementById('votedMessage');
-    if (Store.hasVoted()) {
-      form.style.display = 'none';
-      msg.classList.add('visible');
-    } else {
-      form.style.display = 'block';
-      msg.classList.remove('visible');
-    }
+    const form = document.getElementById('formVotacion'), msg = document.getElementById('votedMessage');
+    if (Store.hasVoted()) { form.style.display = 'none'; msg.classList.add('visible'); } else { form.style.display = 'block'; msg.classList.remove('visible'); }
   }
 };
 
-/* ---------- Renderizar formulario ---------- */
-const preguntasContainer = document.getElementById('preguntasContainer');
-preguntasContainer.innerHTML = ''; 
+/* ---------- Cargar del Servidor ---------- */
+async function cargarResultadosDesdeServidor() {
+  try {
+    const res = await fetch(`${API_URL}/resultados`); if (!res.ok) throw new Error('Servidor no disponible'); const data = await res.json();
+    const votos = {}; for (const f of data.resultados) { if (!votos[f.pregunta_id]) votos[f.pregunta_id] = {}; votos[f.pregunta_id][f.opcion] = f.votos; }
+    App.globalVotos = votos; App.scheduleRender();
+    document.getElementById('statParticipantes').textContent = data.total_participantes;
+    document.getElementById('statVotosHint').textContent = data.total_participantes > 0 ? 'Global' : 'Sin registros';
+  } catch (e) { console.warn('Error al cargar servidor:', e); }
+}
 
+/* ---------- Renderizar Preguntas ---------- */
+const preguntasContainer = document.getElementById('preguntasContainer'); preguntasContainer.innerHTML = ''; 
 PREGUNTAS.forEach(p => {
-  const div = document.createElement('div');
-  div.className = 'pregunta';
-  div.dataset.pid = p.id;
-  div.innerHTML = `<p>${UI.escapeHTML(p.texto)}</p>`;
-  
-  const ops = document.createElement('div');
-  ops.className = 'opciones';
+  const div = document.createElement('div'); div.className = 'pregunta'; div.dataset.pid = p.id; div.innerHTML = `<p>${UI.escapeHTML(p.texto)}</p>`;
+  const ops = document.createElement('div'); ops.className = 'opciones';
   p.opciones.forEach(op => {
-    const label = document.createElement('label');
-    label.className = 'opcion';
-    label.innerHTML = `<input type="radio" name="${p.id}" value="${UI.escapeHTML(op)}" required> ${UI.escapeHTML(op)}`;
-    ops.appendChild(label);
+    const label = document.createElement('label'); label.className = 'opcion'; label.innerHTML = `<input type="radio" name="${p.id}" value="${UI.escapeHTML(op)}" required> ${UI.escapeHTML(op)}`; ops.appendChild(label);
   });
-  div.appendChild(ops);
-  preguntasContainer.appendChild(div);
+  div.appendChild(ops); preguntasContainer.appendChild(div);
 });
 
-/* ---------- Envío de votos ---------- */
-const formVotacion = document.getElementById('formVotacion');
-const btnEnviarVotos = document.getElementById('btnEnviarVotos');
-let enviandoVotos = false;
+/* ---------- Envío de Votos ---------- */
+const formVotacion = document.getElementById('formVotacion'); const btnEnviarVotos = document.getElementById('btnEnviarVotos'); let enviandoVotos = false;
+formVotacion.addEventListener('change', e => { if (e.target && e.target.name) { e.target.closest('.pregunta').style.background = 'transparent'; App.renderProgress(); } });
 
-formVotacion.addEventListener('change', e => {
-  if (e.target && e.target.name) {
-    e.target.closest('.pregunta').style.background = 'transparent';
-    App.renderProgress();
-  }
-});
-
-formVotacion.addEventListener('submit', e => {
-  e.preventDefault();
-  if (enviandoVotos || Store.hasVoted()) return;
-
-  const formData = new FormData(formVotacion);
-  const entries = [...formData.entries()];
-  const missing = PREGUNTAS.filter(p => !formData.get(p.id));
-
+formVotacion.addEventListener('submit', async (e) => {
+  e.preventDefault(); if (enviandoVotos || Store.hasVoted()) return;
+  const formData = new FormData(formVotacion); const missing = PREGUNTAS.filter(p => !formData.get(p.id));
   if (missing.length > 0) {
-    PREGUNTAS.forEach(p => {
-      const wrapper = formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`);
-      if (wrapper) wrapper.style.background = !formData.get(p.id) ? '#FADBD8' : 'transparent';
-    });
-    missing[0].id && formVotacion.querySelector(`input[name="${missing[0].id}"]`)?.focus();
-    UI.toast(`Faltan ${missing.length} preguntas.`, 'err');
-    return;
+    PREGUNTAS.forEach(p => { const w = formVotacion.querySelector(`.pregunta[data-pid="${p.id}"]`); if (w) w.style.background = !formData.get(p.id) ? '#FADBD8' : 'transparent'; });
+    formVotacion.querySelector(`input[name="${missing[0].id}"]`)?.focus(); return UI.toast(`Faltan ${missing.length} preguntas.`, 'err');
   }
-
-  enviandoVotos = true;
-  btnEnviarVotos.disabled = true;
-  btnEnviarVotos.innerHTML = '<span class="spinner"></span> Guardando…';
+  const respuestas = [...formData.entries()].map(([pid, val]) => ({ pregunta_id: pid, opcion: val }));
+  enviandoVotos = true; btnEnviarVotos.disabled = true; btnEnviarVotos.innerHTML = '<span class="spinner"></span> Enviando…';
 
   try {
-    const votos = Store.getVotos();
-    for (const [pid, valor] of entries) {
-      if (!votos[pid]) votos[pid] = {};
-      votos[pid][valor] = (votos[pid][valor] || 0) + 1;
-    }
-    Store.setVotos(votos);
-    Store.setHasVoted(true); // Bloquea futuros votos en este dispositivo
-    
-    formVotacion.reset();
-    App.scheduleRender();
-    App.checkVoteStatus(); // Oculta el formulario y muestra mensaje
-    
-    UI.toast('¡Respuestas registradas!', 'ok');
-    document.getElementById('chartsSection').scrollIntoView({ behavior: 'smooth' });
-  } catch (err) {
-    UI.toast('Error al guardar', 'err');
-  } finally {
-    setTimeout(() => { btnEnviarVotos.disabled = false; btnEnviarVotos.innerHTML = 'Enviar mis respuestas'; enviandoVotos = false; }, 400);
-  }
+    const res = await fetch(`${API_URL}/voto`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ dispositivo_id: getDeviceId(), respuestas }) });
+    const data = await res.json(); if (!res.ok) throw new Error(data.error || 'Error al guardar');
+    Store.setHasVoted(true); formVotacion.reset(); App.checkVoteStatus(); UI.toast('¡Votos guardados en el servidor!', 'ok');
+    await cargarResultadosDesdeServidor(); document.getElementById('chartsSection').scrollIntoView({ behavior: 'smooth' });
+  } catch (err) { UI.toast(`Error: ${err.message}`, 'err'); } 
+  finally { setTimeout(() => { btnEnviarVotos.disabled = false; btnEnviarVotos.innerHTML = 'Enviar mis respuestas'; enviandoVotos = false; }, 400); }
 });
 
 /* ---------- Opiniones ---------- */
-const formOpinion = document.getElementById('formOpinion');
-const textoOpinion = document.getElementById('textoOpinion');
-const btnEnviarOpinion = document.getElementById('btnEnviarOpinion');
-const charCount = document.getElementById('charCount');
-let enviandoOpinion = false;
-
-textoOpinion.value = Store.getDraft();
-charCount.textContent = textoOpinion.value.length;
-
-textoOpinion.addEventListener('input', () => {
-  charCount.textContent = textoOpinion.value.length;
-  Store.setDraft(textoOpinion.value);
+const formOpinion = document.getElementById('formOpinion'); const textoOpinion = document.getElementById('textoOpinion'); const btnEnviarOpinion = document.getElementById('btnEnviarOpinion'); const charCount = document.getElementById('charCount'); let enviandoOpinion = false;
+textoOpinion.value = Store.getDraft(); charCount.textContent = textoOpinion.value.length;
+textoOpinion.addEventListener('input', () => { charCount.textContent = textoOpinion.value.length; Store.setDraft(textoOpinion.value); });
+formOpinion.addEventListener('submit', e => {
+  e.preventDefault(); if (enviandoOpinion) return; const texto = textoOpinion.value.trim(); if (texto.length < 5) return UI.toast('Mínimo 5 caracteres', 'err');
+  enviandoOpinion = true; btnEnviarOpinion.disabled = true;
+  try {
+    const ops = Store.getOpiniones(); ops.push({ texto, fecha: new Date().toISOString() }); Store.setOpiniones(ops);
+    textoOpinion.value = ''; Store.setDraft(''); charCount.textContent = '0'; App.scheduleRender(); UI.toast('¡Opinión publicada!', 'ok');
+  } catch (err) { UI.toast('Error al publicar', 'err'); } finally { setTimeout(() => { btnEnviarOpinion.disabled = false; enviandoOpinion = false; }, 400); }
 });
 
-formOpinion.addEventListener('submit', e => {
-  e.preventDefault();
-  if (enviandoOpinion) return;
-  const texto = textoOpinion.value.trim();
-  if (texto.length < 5) return UI.toast('Mínimo 5 caracteres', 'err');
-
-  enviandoOpinion = true;
-  btnEnviarOpinion.disabled = true;
-  
-  try {
-    const ops = Store.getOpiniones();
-    ops.push({ texto, fecha: new Date().toISOString() });
-    Store.setOpiniones(ops);
-    textoOpinion.value = '';
-    Store.setDraft('');
-    charCount.textContent = '0';
-    App.scheduleRender();
-    UI.toast('¡Opinión publicada!', 'ok');
-  } catch (err) {
-    UI.toast('Error al publicar', 'err');
-  } finally {
-    setTimeout(() => { btnEnviarOpinion.disabled = false; enviandoOpinion = false; }, 400);
+/* ---------- Desbloqueo del Modo Profe (Secreto: 5 clics en el badge) ---------- */
+let secretClicks = 0;
+document.getElementById('secretBadge').addEventListener('click', () => {
+  secretClicks++;
+  if (secretClicks >= 5) {
+    const card = document.getElementById('teacherCard');
+    if (card.style.display === 'none') {
+      card.style.display = 'block';
+      UI.toast('🔓 Modo Profesor Activado', 'ok');
+      card.scrollIntoView({ behavior: 'smooth' });
+    }
+    secretClicks = 0; // Reiniciar
   }
 });
 
-/* ---------- Gestión de Datos ---------- */
-document.getElementById('btnExportar').addEventListener('click', () => {
-  const data = { meta: { version: 8, fecha: new Date().toISOString() }, votos: Store.getVotos(), opiniones: Store.getOpiniones() };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `fisica10-${Date.now()}.json`;
-  document.body.appendChild(a); a.click(); a.remove(); UI.toast('Datos exportados', 'ok');
-});
-
-document.getElementById('btnImportar').addEventListener('click', () => document.getElementById('inputImportar').click());
-document.getElementById('inputImportar').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    try {
-      const data = JSON.parse(ev.target.result);
-      if (!data.votos || !data.opiniones) throw new Error();
-      if (!confirm('¿Reemplazar datos actuales?')) return;
-      Store.setVotos(data.votos); Store.setOpiniones(data.opiniones);
-      Store.setHasVoted(false); // Si se importan datos nuevos, permitir votar
-      App.checkVoteStatus();
-      App.scheduleRender(); UI.toast('Datos importados', 'ok');
-    } catch { UI.toast('Archivo inválido', 'err'); } finally { e.target.value = ''; }
-  };
-  reader.readAsText(file);
-});
-
-document.getElementById('btnReset').addEventListener('click', () => {
-  if (!confirm('¿Borrar TODOS los datos y permitir votar de nuevo?')) return;
-  Store.reset(); 
-  formVotacion.reset(); 
-  textoOpinion.value = '';
-  App.checkVoteStatus();
-  App.scheduleRender(); 
-  App.renderProgress(); 
-  UI.toast('Datos borrados. Puedes votar de nuevo.', 'info');
+document.getElementById('btnNextStudent').addEventListener('click', () => {
+  if (!confirm('¿Permitir que el SIGUIENTE estudiante vote en este dispositivo?')) return;
+  localStorage.removeItem('fisica_device_id'); Store.setHasVoted(false); formVotacion.reset(); App.checkVoteStatus(); App.renderProgress();
+  UI.toast('Listo. El siguiente estudiante puede votar.', 'ok'); window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 /* ---------- Efecto 3D Tilt ---------- */
 function init3DTilt() {
   const cards = document.querySelectorAll('.card, .stat-card');
-  
-  // Solo aplicar en dispositivos con ratón (evitar problemas en táctil)
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     cards.forEach(card => {
       card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = ((y - centerY) / centerY) * -5; // Max 5 grados
-        const rotateY = ((x - centerX) / centerX) * 5;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        card.style.boxShadow = '0 15px 35px rgba(0,0,0,0.1)';
+        const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top; const centerX = rect.width / 2; const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -5; const rotateY = ((x - centerX) / centerX) * 5;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`; card.style.boxShadow = '0 15px 35px rgba(0,0,0,0.1)';
       });
-      
       card.addEventListener('mouseleave', () => {
-        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-        card.style.boxShadow = '0 4px 12px rgba(0,0,0,.03)';
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; card.style.boxShadow = '0 4px 12px rgba(0,0,0,.03)';
       });
     });
   }
@@ -717,11 +414,7 @@ function init3DTilt() {
 
 /* ---------- Init ---------- */
 window.addEventListener('load', () => {
-  App.initCharts();
-  App.scheduleRender();
-  App.renderProgress();
-  App.checkVoteStatus(); // Verifica si ya votó
-  init3DTilt(); // Inicializa el efecto 3D
+  App.initCharts(); App.scheduleRender(); App.renderProgress(); App.checkVoteStatus(); init3DTilt(); cargarResultadosDesdeServidor(); setInterval(cargarResultadosDesdeServidor, 30000);
 });
 </script>
 
